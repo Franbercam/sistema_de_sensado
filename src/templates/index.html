@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<HTML>
+
+    <HEAD>
+        <TITLE>Panel de control</TITLE>
+        <link rel="shortcut icon" href="{{url_for('static', filename='favicon.png')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    </HEAD>
+
+    <BODY>
+        <header>
+            <div class="fav_header">
+                <div id ="fav_logo">
+                    <a class="defaultLogo" href="https://www.us.es" target="_blank" title="Universidad de Sevilla">
+                        <img src="{{ url_for('static', filename='logo_us.png') }}" alt="Logo de la universidad">
+                    </a>
+                    <a class="mediaLogo" href="https://www.informatica.us.es/" title="ETSII">
+                        <img src="{{ url_for('static', filename='logo_etsii.png') }}" alt="Logo de la facultad">
+                    </a>                    
+                </div>                
+            </div>
+
+        </header>
+        <div class="sensor">
+            <table class="sensor_hallway">
+                <tr>
+                    <th>IP del sensor</th>
+                    <th>Lectura de datos</th>
+                </tr>
+                <tr>
+                    <td>
+                        <b>{{IP_SENSOR}}</b>
+                    </td>
+                    <td>
+                        {{DATOS_SENSOR}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>0.0.0.0</b>
+                    </td>
+                    <td>
+                        Sensor de prueba
+                    </td>
+                </tr>
+            </table>
+
+            <table class="sensor_hallway">
+                <tr>
+                    <th>IP del sensor</th>
+                    <th>Lectura de datos</th>
+                </tr>
+                <tr>
+                    <td>
+                        <b>0.0.0.0</b>
+                    </td>
+                    <td>
+                        Sensor de prueba
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>0.0.0.0</b>
+                    </td>
+                    <td>
+                        Sensor de prueba
+                    </td>
+                </tr>
+            </table>
+
+        </div>      
+
+
+        <footer>
+            <div class="fav_footerwrap">
+
+            </div>
+            <p>&copy; 2024 <a href="https://www.us.es"> ETSII</a>   </p>
+        </footer>
+
+        <script type="text/javascript">
+            // Función para recargar la página después de un cierto tiempo (en milisegundos)
+            function recargarPagina() {
+                setTimeout(function(){
+                    location.reload(true); // Recargar la página
+                }, 10000); // 60000 milisegundos = 1 minuto
+            }
+    
+            // Llamar a la función para iniciar la recarga automática
+            recargarPagina();
+        </script>
+
+    </BODY>
+
+  </HTML>
