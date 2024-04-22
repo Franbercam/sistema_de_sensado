@@ -1,0 +1,19 @@
+#fav_logo {
+    margin-left: 2%;
+    border-top: 1px solid #ccc; 
+    border-bottom: 1px solid #ccc; 
+}
+
+#fav_logo a {
+    margin-left: 2%;   
+}
+
+footer {
+    margin-top: 250px; /* Margen superior de 20px */
+    border: solid;
+    padding: 10px; /* Relleno interno para el pie de página */
+}
+
+.fav_footerwrap {
+    background-color: black;
+}

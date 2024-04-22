@@ -10,6 +10,7 @@ def init_app(config):
 
     # Blueprints
     app.register_blueprint(ControlPanel.main, url_prefix='/')
+    #app.register_blueprint(influx_config.main, url_prefix='/historial.html')
 
     return app
    
