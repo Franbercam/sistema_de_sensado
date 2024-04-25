@@ -20,4 +20,28 @@ El sistema consiste en:
 
    ```bash
    git clone https://github.com/Franbercam/sistema_de_sensado
-   cd tu_repositorio
+   cd sistema_de_sensado
+
+2. **Opcional: Activar Entorno Virtual (Recomendado)**
+
+   Si prefieres trabajar en un entorno virtual, puedes crear uno y activarlo con los siguientes comandos:
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # En sistemas Unix o MacOS
+   \venv\Scripts\activate    # En Windows
+
+3. **Instalar dependencias**
+
+   Asegúrate de tener Python y pip instalados en tu sistema. Luego, ejecuta el siguiente comando para instalar todas las dependencias necesarias:
+
+   ```bash
+   pip install -r requirements.txt
+
+4. **Ejecutar la Aplicación**
+
+   Puedes ejecutar la aplicación directamente con el siguiente comando:
+
+   ```bash
+   python .\index.py 
+
