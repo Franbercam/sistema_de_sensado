@@ -13,12 +13,16 @@ INFLUXDB_DATABASE = 'sistema_sensado'
 def conectar_influxdb():
     try:
         client = InfluxDBClient(host=INFLUXDB_HOST, port=INFLUXDB_PORT, username=INFLUXDB_USER, password=INFLUXDB_PASSWORD)
-        client.create_database(INFLUXDB_DATABASE)
-        #si la base de datos ya existe, create_database() simplemente no hará nada. Si la base de datos no existe, se creará automáticamente
+        # Verificar si la base de datos ya existe
+        databases = client.get_list_database()
+        if not any(db['sistema_sensado'] == INFLUXDB_DATABASE for db in databases):
+            client.create_database(INFLUXDB_DATABASE)
         return client
     except Exception as e:
         print(f"Error al conectar con InfluxDB: {e}")
-        sys.exit(1)
+        # Log de error o notificación
+        raise  # Propagar la excepción para que sea manejada en el nivel superior
+
 
 
 def insertar_datos(client, medicion, datos):
