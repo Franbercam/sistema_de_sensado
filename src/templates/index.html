@@ -24,12 +24,16 @@
 
         </header>
         <div class="sensor">
+            {{LINEA}}
             <table class="sensor_hallway">
                 <tr>
                     <th>IP del sensor</th>
                     <th>Lectura de datos</th>
                 </tr>
                 <tr>
+                    <td>
+                        <b>{{RB_SENSOR}}</b>
+                    </td>
                     <td>
                         <b>{{IP_SENSOR}}</b>
                     </td>
@@ -37,38 +41,10 @@
                         {{DATOS_SENSOR}}
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <b>0.0.0.0</b>
-                    </td>
-                    <td>
-                        Sensor de prueba
-                    </td>
-                </tr>
+                
             </table>
 
-            <table class="sensor_hallway">
-                <tr>
-                    <th>IP del sensor</th>
-                    <th>Lectura de datos</th>
-                </tr>
-                <tr>
-                    <td>
-                        <b>0.0.0.0</b>
-                    </td>
-                    <td>
-                        Sensor de prueba
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <b>0.0.0.0</b>
-                    </td>
-                    <td>
-                        Sensor de prueba
-                    </td>
-                </tr>
-            </table>
+        
 
         </div>      
 
@@ -80,7 +56,7 @@
             <p>&copy; 2024 <a href="https://www.us.es"> ETSII</a>   </p>
         </footer>
 
-        <script type="text/javascript">
+       <script type="text/javascript">
             // Función para recargar la página después de un cierto tiempo (en milisegundos)
             function recargarPagina() {
                 setTimeout(function(){
@@ -89,7 +65,7 @@
             }
     
             // Llamar a la función para iniciar la recarga automática
-            recargarPagina();
+            //recargarPagina();
         </script>
 
     </BODY>
