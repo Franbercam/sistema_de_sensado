@@ -12,5 +12,6 @@ def init_app(config):
     app.register_blueprint(ControlPanel.main, url_prefix='/')
     app.register_blueprint(HistoricDataView.main, url_prefix='/historial.html')
 
+  
     return app
    

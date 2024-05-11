@@ -15,15 +15,6 @@
     text-align: center; 
 }
 
-.sensor_hallway {
-    border: 1px solid black; /* Bordes negros */
-    margin: 5% auto 0; /* Margen superior del 5% y centra la tabla horizontalmente */
-    width: 90%; /* Ancho del 90% de su contenedor */
-}
-
-.sensor_hallway td {
-    border: 1px solid black; /* Bordes negros en las celdas */
-}
 
 footer {
     margin-top: 250px; /* Margen superior de 20px */
@@ -33,4 +24,40 @@ footer {
 
 .fav_footerwrap {
     background-color: black;
+}
+
+#tabla-maquinas {
+    width: 30%;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+#tabla-maquinas th, #tabla-maquinas td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+#tabla-maquinas th {
+    background-color: #f2f2f2;
+}
+
+#contenedor-tabla {
+    float: left;
+    width: 70%; /* Ajusta según tu preferencia */
+}
+
+#detalles-maquina {
+    float: right;
+    width: 30%; /* Ajusta según tu preferencia */
+    display: none;
+}
+
+#contenedor-detalles {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+#cerrar-detalles {
+    display: block;
+    margin-top: 10px;
 }

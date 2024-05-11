@@ -1,52 +1,28 @@
-from influxdb import InfluxDBClient
+import influxdb_client
+from influxdb_client import Point
+from influxdb_client.client.write_api import SYNCHRONOUS
 
-# Configuración de la conexión con InfluxDB
-INFLUXDB_HOST = 'localhost'  
-INFLUXDB_PORT = 8086
-INFLUXDB_USER = 'admin'  
-INFLUXDB_PASSWORD = 'admin'  
-INFLUXDB_DATABASE = 'sistema_sensado'
 
-def conectar_influxdb():
+INFLUXDB_TOKEN = 'YytQyoZl4naJMXTQwwFYCxDAoVEFME_A24YeX7g0qikyyU4uLi8APMgjgFgaNNRskWQw-bJa42ANoFutXadkww=='
+INFLUXDB_ORG = "Universidad de Sevilla"
+INFLUXDB_URL = "http://localhost:8086"
+INFLUXDB_BUCKET="sistema_de_sensado"
+
+write_client = influxdb_client.InfluxDBClient(url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
+
+write_api = write_client.write_api(write_options=SYNCHRONOUS)
+
+def insertar_datos(data_list):
     try:
-        client = InfluxDBClient(host=INFLUXDB_HOST, port=INFLUXDB_PORT, username=INFLUXDB_USER, password=INFLUXDB_PASSWORD)
-        # Verificar si la base de datos ya existe
-        databases = client.get_list_database()
-        if not any(db['name'] == INFLUXDB_DATABASE for db in databases):
-            client.create_database(INFLUXDB_DATABASE)
-        return client
-    except Exception as e:
-        print(f"Error al conectar con InfluxDB: {e}")
-        # Log de error o notificación
-        raise  # Propagar la excepción para que sea manejada en el nivel superior
+        print(data_list)
+        point = Point("my_measurement") \
+        .tag("maquina", data_list["id"]) \
+        .field("temperatura", data_list["temperatura"]) \
+        .field("humedad", data_list["humedad"]) \
+        .field("ip", data_list["ip"])
+        write_api.write(bucket=INFLUXDB_BUCKET, org=INFLUXDB_ORG, record=point)
 
-def insertar_datos(client, rb_id, temperatura, humedad):
-    try:
-        json_body = [
-            {
-                "measurement": rb_id,
-                "fields": {
-                    "temperatura": temperatura,
-                    "humedad": humedad
-                }
-            }
-        ]
-        
-        client.write_points(json_body)
     except Exception as e:
         print(f"Error al insertar datos en InfluxDB: {e}")
-        # Log de error o notificación
-        raise  # Propagar la excepción para que sea manejada en el nivel superior
-
-def leer_datos(client, rb_id, limit=None):
-    try:
-        query = f'SELECT * FROM "{rb_id}"'
-        if limit:
-            query += f' LIMIT {limit}'
-        
-        result = client.query(query)
-        return list(result.get_points())
-    except Exception as e:
-        print(f"Error al leer datos de InfluxDB: {e}")
         # Log de error o notificación
         raise  # Propagar la excepción para que sea manejada en el nivel superior

@@ -3,6 +3,8 @@
 
     <HEAD>
         <TITLE>Panel de control</TITLE>
+        
+
         <link rel="shortcut icon" href="{{url_for('static', filename='favicon.png')}}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     </HEAD>
@@ -24,27 +26,19 @@
 
         </header>
         <div class="sensor">
-            {{LINEA}}
-            <table class="sensor_hallway">
-                <tr>
-                    <th>IP del sensor</th>
-                    <th>Lectura de datos</th>
-                </tr>
-                <tr>
-                    <td>
-                        <b>{{RB_SENSOR}}</b>
-                    </td>
-                    <td>
-                        <b>{{IP_SENSOR}}</b>
-                    </td>
-                    <td>
-                        {{DATOS_SENSOR}}
-                    </td>
-                </tr>
-                
-            </table>
 
-        
+            <div id="contenedor-tabla">
+                <table id="tabla-maquinas">
+                    <!-- Contenido de la tabla aquí -->
+                </table>
+            </div>
+            <div id="detalles-maquina" style="display: none;">
+                <div id="contenedor-detalles">
+                    <!-- Detalles de la máquina aquí -->
+                </div>
+                <button id="cerrar-detalles">Cerrar</button>
+            </div>
+            
 
         </div>      
 
@@ -55,19 +49,8 @@
             </div>
             <p>&copy; 2024 <a href="https://www.us.es"> ETSII</a>   </p>
         </footer>
-
-       <script type="text/javascript">
-            // Función para recargar la página después de un cierto tiempo (en milisegundos)
-            function recargarPagina() {
-                setTimeout(function(){
-                    location.reload(true); // Recargar la página
-                }, 10000); // 60000 milisegundos = 1 minuto
-            }
-    
-            // Llamar a la función para iniciar la recarga automática
-            //recargarPagina();
-        </script>
-
+ 
+        <script src="{{ url_for('static', filename='javascript/index.js') }}"></script>
     </BODY>
 
   </HTML>
