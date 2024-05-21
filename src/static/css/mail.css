@@ -1,0 +1,95 @@
+#fav_logo {
+    margin-left: 2%;
+    border-top: 1px solid #ccc; 
+    border-bottom: 1px solid #ccc; 
+}
+
+#fav_logo a {
+    margin-left: 2%;   
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 97%;
+    margin-top: 250px;
+    margin-bottom: 10px; 
+    border: solid;
+    padding: 10px; 
+}
+
+.contenedor-formulario-alerta{
+    border: solid;
+}
+
+#formulario-alerta{
+    padding: 1%;
+}
+
+.fav_footerwrap {
+    background-color: black;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    color: #333;
+}
+
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+#nombre,
+#correo,
+#temperatura,
+#humedad {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px; 
+}
+
+#boton-guardar {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Verde */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#boton-guardar:hover {
+    background-color: #45a049; /* Verde más oscuro */
+}
+
+#boton-cancelar {
+    padding: 10px 20px;
+    background-color: #f44336; /* Rojo */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#boton-cancelar:hover {
+    background-color: #d32f2f; /* Rojo más oscuro */
+}

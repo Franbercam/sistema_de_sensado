@@ -1,25 +1,25 @@
-
 #fav_logo {
     margin-left: 2%;
     border-top: 1px solid #ccc; 
     border-bottom: 1px solid #ccc; 
 }
 
-
 #fav_logo a {
     margin-left: 2%;   
 }
-
 
 .sensor {
     text-align: center; 
 }
 
-
 footer {
-    margin-top: 250px; /* Margen superior de 20px */
+    position: fixed;
+    bottom: 0;
+    width: 97%;
+    margin-top: 250px;
+    margin-bottom: 10px; 
     border: solid;
-    padding: 10px; /* Relleno interno para el pie de página */
+    padding: 10px; 
 }
 
 .fav_footerwrap {
@@ -36,28 +36,44 @@ footer {
     text-align: center;
     padding: 8px;
 }
+
 #tabla-maquinas th {
     background-color: #f2f2f2;
 }
 
 #contenedor-tabla {
-    float: left;
-    width: 70%; /* Ajusta según tu preferencia */
+    width: 70%; /* Reducimos el ancho para dejar espacio al detalle */
+    float: left; /* Mantenemos el flotado a la izquierda */
+    margin-right: 5%; /* Añadimos un margen a la derecha para separar del detalle */
 }
 
 #detalles-maquina {
-    float: right;
-    width: 30%; /* Ajusta según tu preferencia */
-    display: none;
+    width: 25%; /* Ajustamos el ancho del detalle */
+    float: left; /* Flotamos el detalle a la izquierda */
+    display: none; /* Lo mantenemos oculto inicialmente */
+    text-align: center; /* Centramos horizontalmente el contenido */
+}
+
+.mostrar-detalles #contenedor-tabla {
+    width: 45%; /* Cuando se muestren los detalles, reducimos el ancho de la tabla */
+}
+
+.mostrar-detalles #detalles-maquina {
+    display: block; /* Mostramos los detalles */
 }
 
 #contenedor-detalles {
-    padding: 10px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
+    width: 125%;
 }
 
 #cerrar-detalles {
+    display: block;
+    margin-top: 10px;
+}
+
+#alerta {
     display: block;
     margin-top: 10px;
 }

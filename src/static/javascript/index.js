@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Se ejecuta al cargar index.html
     obtenerDatosInfluxDB();
+
+     // Agregar evento al botón cerrar
+     var botonCerrar = document.getElementById("cerrar-detalles");
+     botonCerrar.addEventListener("click", function() {
+        ocultarDetallesMaquina();
+     });
 });
 
 
@@ -64,6 +70,7 @@ function mostrarMaquinasEnPantalla(data) {
     });
 }
 
+/*
 function mostrarDetallesMaquina(nombre, detalles) {
     var detallesMaquina = document.getElementById("detalles-maquina");
     var contenedorDetalles = document.getElementById("contenedor-detalles");
@@ -74,6 +81,31 @@ function mostrarDetallesMaquina(nombre, detalles) {
     // Mostrar nombre y detalles de la máquina
     contenedorDetalles.innerHTML = "<h2>" + nombre + "</h2>" + "<p>" + JSON.stringify(detalles) + "</p>";
 }
+*/
 
+function mostrarDetallesMaquina(nombre, detalles) {
+    var detallesMaquina = document.getElementById("detalles-maquina");
 
+    // Mostrar área de detalles
+    detallesMaquina.style.display = "block";
+
+    // Mostrar nombre y detalles de la máquina
+    var contenedorDetalles = document.getElementById("contenedor-detalles");
+    contenedorDetalles.innerHTML = "<h2>" + nombre + "</h2>" + "<p>" + JSON.stringify(detalles) + "</p>";
+
+    // Agregar la clase para mostrar los detalles
+    var sensor = document.querySelector('.sensor');
+    sensor.classList.add('mostrar-detalles');
+}
+
+function ocultarDetallesMaquina() {
+    var detallesMaquina = document.getElementById("detalles-maquina");
+
+    // Ocultar área de detalles
+    detallesMaquina.style.display = "none";
+
+    // Quitar la clase que muestra los detalles
+    var sensor = document.querySelector('.sensor');
+    sensor.classList.remove('mostrar-detalles');
+}
 
