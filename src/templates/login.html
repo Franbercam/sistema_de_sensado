@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<HTML>
+
+    <HEAD>
+        <TITLE>Index</TITLE>
+        
+
+        <link rel="shortcut icon" href="{{url_for('static', filename='favicon.png')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    </HEAD>
+
+    <BODY>
+        <header>
+            <div class="fav_header">
+                <div id ="fav_logo">
+                    <a class="defaultLogo" href="https://www.us.es" target="_blank" title="Universidad de Sevilla">
+                        <img src="{{ url_for('static', filename='logo_us.png') }}" alt="Logo de la universidad">
+                    </a>
+                    <a class="mediaLogo" href="https://www.informatica.us.es/" title="ETSII">
+                        <img src="{{ url_for('static', filename='logo_etsii.png') }}" alt="Logo de la facultad">
+                    </a>                    
+                </div>                
+            </div>            
+        </header>
+        <a href="{{ url_for('control_panel_blueprint.index') }}" id="boton-cancelar">Panel de control</a>
+        
+        <div class="login-container">
+            <h2>Iniciar sesión</h2>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Usuario:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Iniciar sesión</button>
+            </form>
+        </div>
+ 
+        <script src="{{ url_for('static', filename='javascript/login.js') }}"></script>
+    </BODY>
+
+  </HTML>

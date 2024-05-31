@@ -1,11 +1,6 @@
 import re
 from datetime import datetime
-
-from flask import json
-import influxdb_client, os, time
-from influxdb_client import InfluxDBClient, Point, WritePrecision
-from influxdb_client.client.write_api import SYNCHRONOUS
-
+import influxdb_client
 
 INFLUXDB_TOKEN = 'YytQyoZl4naJMXTQwwFYCxDAoVEFME_A24YeX7g0qikyyU4uLi8APMgjgFgaNNRskWQw-bJa42ANoFutXadkww=='
 token = INFLUXDB_TOKEN
@@ -16,21 +11,25 @@ write_client = influxdb_client.InfluxDBClient(url=url, token=token, org=org)
 query_api = write_client.query_api()
 
 def get_data_db():
-    
-    query = """from(bucket: "sistema_de_sensado")
-    |> range(start: -10m)
-    |> filter(fn: (r) => r._measurement == "my_measurement")
-    """
-    tables = query_api.query(query, org="Universidad de Sevilla")
-    #query2 = "q=SELECT used_percent FROM example-db.example-rp.example-measurement WHERE host=host1"
+    try:
+        query = """from(bucket: "sistema_de_sensado")
+        |> range(start: -10m)
+        |> filter(fn: (r) => r._measurement == "my_measurement")
+        """
+        tables = query_api.query(query, org="Universidad de Sevilla")
 
-    data=[]
-    for table in tables:
-        for record in table.records:
-            #data_json = fluxrecord_to_json(record)
-            data.append(str(record))
-            
-    return records_to_dict(data)
+        data = []
+        for table in tables:
+            for record in table.records:
+                data.append(str(record))
+
+        res = records_to_dict(data)
+        return res
+
+    except Exception as e:
+        return (f"An error occurred: {e}")
+
+
 
 def get_id(text):
 

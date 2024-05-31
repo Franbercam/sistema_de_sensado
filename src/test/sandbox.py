@@ -88,3 +88,8 @@ def records_to_dict(data_list):
     return res
 
 print(records_to_dict(data))
+
+
+lista = [1,2,3]
+
+print (1 in lista)

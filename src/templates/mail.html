@@ -22,38 +22,60 @@
 
         </header>
 
+        
+
         <div class="contenedor-formulario-alerta">
             <h2>Ingrese los siguientes datos:</h2>
             <form id="formulario-alerta" action="/submit_form" method="post">
                 <label for="nombre">Nombre de la alarma:</label><br>
                 <input type="text" id="nombre" name="nombre" required><br><br>
+
+                <label for="select-maquinas">Selecciona una máquina:</label>
+                <select id="select-maquinas" name="maquina">
+                    <!-- Las opciones se generarán dinámicamente aquí -->
+                </select>
     
                 <label for="correo">Correo electrónico:</label><br>
                 <input type="email" id="correo" name="correo" placeholder="correocorporativo@corporativo.es" ><br><br>
+
+                <div class="contenedor-temp-humedad">
+                    <div class="campo">
+                        <label for="temperatura">Temperatura (en °C):</label><br>
+                        <input type="number" id="temperatura" placeholder="Ej: 44" name="temperatura" step="0.1" required>
+                    </div>
+                    <div class="campo">
+                        <label for="humedad">Humedad (en %):</label><br>
+                        <input type="number" id="humedad" placeholder="Ej: 73" name="humedad" min="0" max="100" required>
+                    </div>
+                </div>
+
+                
+                
     
-                <label for="temperatura">Temperatura (en °C):</label><br>
-                <input type="number" id="temperatura" name="temperatura" step="0.1" required><br><br>
-    
-                <label for="humedad">Humedad (en %):</label><br>
-                <input type="number" id="humedad" name="humedad" min="0" max="100" required><br><br>
-    
-                <button type="submit" id="boton-guardar">Guardar</button>                    
+                <div class="contenedor-botones">
+                    <button type="submit" id="boton-guardar">Guardar</button>
+                    <a href="{{ url_for('control_panel_blueprint.index') }}" id="boton-cancelar">Cancelar</a>
+                </div>                  
             </form>
-            <form action="{{ url_for('index_blueprint.index') }}" method="get">
-                <button type="submit" id="boton-cancelar" >Cancelar</button>
-            </form>
+            
         </div>
+
+     
+        
         
        
         
 
         <footer>
-            <div class="fav_footerwrap">
-
+            <div class="footer-content">
+                <p>Escuela Técnica Superior de Ingeniería Informática - Universidad de Sevilla</p>
+                <p>Av. Reina Mercedes s/n, 41012 Sevilla - tlfno +(34) 954556817</p>
+                <p>&copy; 2024 <a href="https://www.us.es"> ETSII</a>   </p>
             </div>
-            <p>&copy; 2024 <a href="https://www.us.es"> ETSII</a>   </p>
+            
         </footer>
 
+        <script src="{{ url_for('static', filename='javascript/mail.js') }}"></script>
     </BODY>
 
   </HTML>

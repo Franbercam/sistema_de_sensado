@@ -1,8 +1,13 @@
 import time
 import socket
+
 import influxdb_client
 from influxdb_client import Point
 from influxdb_client.client.write_api import SYNCHRONOUS
+
+from src.database import local_db_controller as alert
+from src.services import mail_services as mail
+
 
 # Configuración de InfluxDB
 INFLUXDB_TOKEN = 'YytQyoZl4naJMXTQwwFYCxDAoVEFME_A24YeX7g0qikyyU4uLi8APMgjgFgaNNRskWQw-bJa42ANoFutXadkww=='
@@ -32,7 +37,6 @@ def conectar_servidor(server_host, server_port):
         client_socket.close()
 
 def insertar_datos(data_list):
-    #print(data_list)
     try:
         point = Point("my_measurement") \
             .tag("maquina", data_list["id"]) \
@@ -45,8 +49,8 @@ def insertar_datos(data_list):
         print(f"Error al insertar datos en InfluxDB: {e}")
         raise
 
-def is_healthy(data_list):
-    return all(element is not None for element in data_list)
+def is_healthy(data):
+    return data["temperatura"]!=None and data["humedad"] != None and data["id"] !=None and data["ip"] != None
 
 def data_parsing(data):
     humedad = None
@@ -70,11 +74,34 @@ def buffer_process(RB1_HOST, RB1_PORT):
     while True:
         data = conectar_servidor(RB1_HOST, RB1_PORT)
         time.sleep(5)
-        parse_data = data_parsing(data)
+        parse_data = data_parsing(data) #{'id': 'rb1', 'temperatura': 24.5, 'humedad': 51.0, 'ip': '169.254.249.146'}
         if is_healthy(parse_data):
+            #check_measure_to_email(parse_data)
             insertar_datos(parse_data)
+
+
+
+def get_alert():
+   alerts = alert.get_data_db()
+   return alerts
+
+def check_measure_to_email(data):
+    alerts_list = get_alert()
+    for alert in alerts_list:
+        _, alert_name, alert_rb, alert_email, alert_temp, alert_hum = alert
+        if data["id"] == alert_rb:
+            if data["temperatura"] >= alert_temp and data["humedad"] >= alert_hum:
+                mail.send_alert(alert_name,alert_email,alert_rb)
+               
+
+ 
+
+
+    
+    
 
 if __name__ == '__main__':
     RB1_HOST = '169.254.249.146'
     RB1_PORT = 8888
     buffer_process(RB1_HOST, RB1_PORT)
+    #print(get_alert())

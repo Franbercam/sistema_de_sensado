@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#fav_logo {
+    margin-left: 2%;
+    border-top: 1px solid #ccc; 
+    border-bottom: 1px solid #ccc; 
+}
+
+#fav_logo a {
+    margin-left: 2%;   
+}
+
+.sensor {
+    text-align: center; 
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%; /* Ajuste para el ancho completo */
+    background-color: #f2f2f2; /* Fondo más suave */
+    padding: 20px 0; /* Espaciado interior */
+    text-align: center; /* Texto centrado */
+    border-top: 1px solid #ddd; /* Borde superior sutil */
+}
+
+.footer-content {
+    max-width: 960px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif; /* Fuente legible */
+}
+
+.footer-content p {
+    margin: 5px 0; /* Espaciado entre párrafos */
+}
+
+#tabla-maquinas {
+    width: 30%;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+#tabla-maquinas th, #tabla-maquinas td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+#tabla-maquinas th {
+    background-color: #f2f2f2;
+}
+
+#contenedor-tabla {
+    width: 70%; /* Reducimos el ancho para dejar espacio al detalle */
+    float: left; /* Mantenemos el flotado a la izquierda */
+    margin-right: 5%; /* Añadimos un margen a la derecha para separar del detalle */
+}
+
+#detalles-maquina {
+    width: 25%; /* Ajustamos el ancho del detalle */
+    float: left; /* Flotamos el detalle a la izquierda */
+    display: none; /* Lo mantenemos oculto inicialmente */
+    text-align: center; /* Centramos horizontalmente el contenido */
+}
+
+.mostrar-detalles #contenedor-tabla {
+    width: 45%; /* Cuando se muestren los detalles, reducimos el ancho de la tabla */
+}
+
+.mostrar-detalles #detalles-maquina {
+    display: block; /* Mostramos los detalles */
+}
+
+
+#cerrar-detalles {
+    display: block;
+    margin-top: 10px;
+}
+
+#alerta {
+    display: block;
+    margin-top: 10px;
+}
+
+.recuadro-mantenimiento {
+    border: 1px solid red;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 40%;
+    background-color: #f8d7da;
+    color: #721c24;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.contenedor-listado-alertas {
+    background-color: #f9f9f9; /* Fondo claro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    border-radius: 10px; /* Bordes redondeados */
+
+    padding: 20px; /* Espaciado interior */  
+    
+    max-width: 600px; /* Limitar el ancho máximo */
+    margin: 0% left; /* Centrar el contenedor horizontalmente */
+}
+
+.contenedor-alertas-sensores {
+    display: flex;
+    justify-content: center; /* Centra el contenido principal horizontalmente */
+    align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+    gap: 20px; /* Espacio entre los elementos */
+    padding: 20px; /* Espaciado interno para el contenedor */
+}
+
+#boton-establecer-alerta {
+    display: inline-block;
+    background-color: #007bff; /* Color de fondo azul */
+    color: #fff; /* Color de texto blanco */
+    text-decoration: none; /* Sin subrayado */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: bold; /* Fuente en negrita */
+    cursor: pointer; /* Cambia el cursor a mano al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color de fondo */
+}
+
+#boton-establecer-alerta:hover {
+    background-color: #0056b3; /* Color de fondo más oscuro al pasar el cursor */
+}
+
+#boton-establecer-alerta:active {
+    background-color: #004085; /* Color de fondo aún más oscuro al hacer clic */
+}
+
+#boton-establecer-alerta:focus {
+    outline: none; /* Sin borde de enfoque */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Sombra alrededor del botón al enfocarlo */
+}
+
+#nombre-detalles {
+    font-family: Arial, sans-serif; /* Elige una fuente fácil de leer */
+    font-size: 24px; /* Ajusta el tamaño del texto según tus necesidades */
+    font-weight: bold; /* Haz que el texto se vea más destacado */
+    color: #333; /* Elige un color de texto que contraste bien con el fondo */
+    margin-bottom: 10px; /* Añade un pequeño espacio inferior para separarlo del contenido siguiente */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas para un aspecto más profesional */
+}
