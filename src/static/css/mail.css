@@ -1,12 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.fav_header {
+    background-color: #f8f9fa; /* Fondo suave para un look más profesional */
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0; /* Espaciado superior e inferior */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.fav_header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 #fav_logo {
-    margin-left: 2%;
-    border-top: 1px solid #ccc; 
-    border-bottom: 1px solid #ccc; 
+    display: flex;
+    align-items: center;
 }
 
 #fav_logo a {
-    margin-left: 2%;   
+    margin-right: 20px;
 }
+
+#fav_logo img {
+    height: 50px; /* Tamaño uniforme para ambos logos */
+}
+
+.manejo_sesion {
+    display: flex;
+    align-items: center;
+}
+
+#usuario_header {
+    margin-right: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+#usuario_header a {
+    text-decoration: none;
+    color: #333;
+}
+
+.btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
 
 footer {
     position: fixed;
@@ -28,9 +85,7 @@ footer {
     margin: 5px 0; /* Espaciado entre párrafos */
 }
 
-body {
-    font-family: Arial, sans-serif;
-}
+
 
 h2 {
     color: #333;

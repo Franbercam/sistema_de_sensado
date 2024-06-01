@@ -5,19 +5,31 @@
         <TITLE>Alertas para máquinas</TITLE>
         <link rel="shortcut icon" href="{{url_for('static', filename='favicon.png')}}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/mail.css') }}">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
     </HEAD>
 
     <BODY>
         <header>
             <div class="fav_header">
-                <div id ="fav_logo">
-                    <a class="defaultLogo" href="https://www.us.es" target="_blank" title="Universidad de Sevilla">
-                        <img src="{{ url_for('static', filename='logo_us.png') }}" alt="Logo de la universidad">
-                    </a>
-                    <a class="mediaLogo" href="https://www.informatica.us.es/" title="ETSII">
-                        <img src="{{ url_for('static', filename='logo_etsii.png') }}" alt="Logo de la facultad">
-                    </a>                    
-                </div>                
+                <div class="container">
+                    <div id="fav_logo">
+                        <a class="defaultLogo" href="https://www.us.es" target="_blank" title="Universidad de Sevilla">
+                            <img src="{{ url_for('static', filename='logo_us.png') }}" alt="Logo de la universidad">
+                        </a>
+                        <a class="mediaLogo" href="https://www.informatica.us.es/" title="ETSII">
+                            <img src="{{ url_for('static', filename='logo_etsii.png') }}" alt="Logo de la facultad">
+                        </a>
+                    </div>
+                    <div class="manejo_sesion">
+                        <div id="usuario_header">
+                            <a>@{{ current_user.username }}</a>
+                        </div>
+                        <a class="btn btn-danger" href="{{ url_for('login_blueprint.logout') }}">Cerrar sesión</a>
+                    </div>
+                </div>
             </div>
 
         </header>
@@ -47,9 +59,7 @@
                         <label for="humedad">Humedad (en %):</label><br>
                         <input type="number" id="humedad" placeholder="Ej: 73" name="humedad" min="0" max="100" required>
                     </div>
-                </div>
-
-                
+                </div>               
                 
     
                 <div class="contenedor-botones">
@@ -75,7 +85,11 @@
             
         </footer>
 
-        <script src="{{ url_for('static', filename='javascript/mail.js') }}"></script>
+        <script src="{{ url_for('static', filename='javascript/mail.js') }}"></script>       
+        <!-- Bootstrap JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </BODY>
 
   </HTML>

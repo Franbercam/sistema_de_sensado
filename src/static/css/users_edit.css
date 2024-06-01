@@ -1,0 +1,173 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.fav_header {
+    background-color: #f8f9fa; /* Fondo suave para un look más profesional */
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0; /* Espaciado superior e inferior */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.fav_header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#fav_logo {
+    display: flex;
+    align-items: center;
+}
+
+#fav_logo a {
+    margin-right: 20px;
+}
+
+#fav_logo img {
+    height: 50px; /* Tamaño uniforme para ambos logos */
+}
+
+.manejo_sesion {
+    display: flex;
+    align-items: center;
+}
+
+#usuario_header {
+    margin-right: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+#usuario_header a {
+    text-decoration: none;
+    color: #333;
+}
+
+#cerrar-sesion {
+    margin-right: 5px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%; /* Ajuste para el ancho completo */
+    background-color: #f2f2f2; /* Fondo más suave */
+    padding: 20px 0; /* Espaciado interior */
+    text-align: center; /* Texto centrado */
+    border-top: 1px solid #ddd; /* Borde superior sutil */
+}
+
+.footer-content {
+    max-width: 960px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif; /* Fuente legible */
+}
+
+.footer-content p {
+    margin: 5px 0; /* Espaciado entre párrafos */
+}
+
+
+
+
+.user_form_container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user_form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form_group {
+    margin-bottom: 15px;
+}
+
+.form_group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+.form_group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.form_group button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user_form_container {
+    float: left; /* Alinear a la izquierda */
+    width: 50%; /* Opcional: ajustar el ancho según tus necesidades */
+}
+
+.user_list_container {
+    float: left; /* Alinear a la izquierda */
+    width: 50%; /* Opcional: ajustar el ancho según tus necesidades */
+    padding-left: 20px; /* Agregar espacio a la izquierda para separarlo del form */
+}
+
+/* Estilos adicionales para el formulario */
+.user_form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos adicionales para la lista de usuarios */
+.user_list_container h2 {
+    margin-top: 0; /* Eliminar el margen superior */
+}
+
+/* Estilos para los botones */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* Estilos adicionales para los elementos de la lista */
+#userList {
+    list-style: none;
+    padding: 0;
+}
+
+#userList li {
+    margin-bottom: 10px;
+}

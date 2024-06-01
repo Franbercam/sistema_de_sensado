@@ -1,5 +1,7 @@
 import re
 from datetime import datetime
+from database import local_db_controller as db
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 data = [
@@ -87,9 +89,6 @@ def records_to_dict(data_list):
     
     return res
 
-print(records_to_dict(data))
+admin_hash=(generate_password_hash('admin'))
 
-
-lista = [1,2,3]
-
-print (1 in lista)
+db.delete_user_db('admin')

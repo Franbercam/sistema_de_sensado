@@ -3,19 +3,43 @@ body {
 
 }
 
+
+.fav_header {
+    background-color: #f8f9fa; /* Fondo suave para un look más profesional */
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0; /* Espaciado superior e inferior */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.fav_header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 #fav_logo {
-    margin-left: 2%;
-    border-top: 1px solid #ccc; 
-    border-bottom: 1px solid #ccc; 
+    display: flex;
+    align-items: center;
 }
 
 #fav_logo a {
-    margin-left: 2%;   
+    margin-right: 20px;
 }
+
+#fav_logo img {
+    height: 50px; /* Tamaño uniforme para ambos logos */
+}
+
+
+
+
 
 .login-container {
     width: 300px;
-    margin: 0 auto;
+    margin: 50px auto; 
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;

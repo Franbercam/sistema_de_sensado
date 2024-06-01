@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify
+from flask_login import login_required
+
 from ..database import local_db_controller as alert
 from ..services import influxdb_service as db
 
@@ -6,6 +8,7 @@ main = Blueprint('mail_blueprint', __name__, url_prefix='/mail')
 
 
 @main.route('/')
+@login_required
 def index():   
 
     return (render_template("mail.html"))

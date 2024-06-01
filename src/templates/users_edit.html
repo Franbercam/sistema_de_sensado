@@ -2,10 +2,9 @@
 <HTML>
 
 <HEAD>
-    <TITLE>Panel de control</TITLE>
-
+    <TITLE>Alertas para máquinas</TITLE>
     <link rel="shortcut icon" href="{{url_for('static', filename='favicon.png')}}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/control_panel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/users_edit.css') }}">
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -14,7 +13,6 @@
 
 <BODY>
     <header>
-
         <div class="fav_header">
             <div class="container">
                 <div id="fav_logo">
@@ -29,43 +27,43 @@
                     <div id="usuario_header">
                         <a>@{{ current_user.username }}</a>
                     </div>
-                    <a class="btn btn-danger" id="cerrar-sesion" href="{{ url_for('login_blueprint.logout') }}">Cerrar sesión</a>
-                    <a class="btn btn-warning" href="{{ url_for('users_edit_blueprint.index') }}">Editar Usuarios</a>
+                    <a class="btn btn-danger" id="cerrar-sesion" href="{{ url_for('login_blueprint.logout') }}">Cerrar
+                        sesión</a>
+                    <a class="btn btn-primary" href="{{ url_for('control_panel_blueprint.index') }}">Panel de
+                        control</a>
                 </div>
             </div>
         </div>
-        
 
     </header>
 
-    <div class="contenedor-alertas-sensores">
-
-        <div class="contenedor-listado-alertas">
-            <h2>Alertas establecidas:</h2>
-            <div id="lista-alertas">
-                <!-- Contenido de la lista aquí -->
+    <div class="user_form_container">
+        <form class="user_form" id="userForm">
+            <h2>Añadir Usuario</h2>
+            <div class="form_group">
+                <label for="username">Nombre de Usuario:</label>
+                <input type="text" id="username" name="username" required>
             </div>
-            <a href="{{ url_for('mail_blueprint.index') }}" id="boton-establecer-alerta">Establecer alerta</a>
-
-
-        </div>
-
-        <div class="sensor">
-            <div id="contenedor-tabla">
-                <table id="tabla-maquinas">
-                    <!-- Contenido de la tabla aquí -->
-                </table>
+            <div class="form_group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
             </div>
-            <div id="detalles-maquina" style="display: none;">
-                <div id="contenedor-detalles">
-                    <!-- Detalles de la máquina aquí -->
-                </div>
-                <button id="cerrar-detalles">Cerrar</button>
-
+            <div class="form_group">
+                <button type="submit" class="btn btn-success">Añadir Usuario</button>
             </div>
-        </div>
-
+        </form>
     </div>
+
+    <div class="user_list_container">
+        <h2>Usuarios Existentes</h2>
+        <ul id="userList">
+            <!-- Lista de usuarios se llenará aquí -->
+        </ul>
+    </div>
+
+
+
+
 
     <footer>
         <div class="footer-content">
@@ -76,12 +74,11 @@
 
     </footer>
 
-    <script src="{{ url_for('static', filename='javascript/control_panel.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/users_edit.js') }}"></script>
     <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </BODY>
 
 </HTML>

@@ -7,25 +7,51 @@
 
         <link rel="shortcut icon" href="{{url_for('static', filename='favicon.png')}}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+        <!-- Bootstrap CSS -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
     </HEAD>
 
     <BODY>
         <header>
+
             <div class="fav_header">
-                <div id ="fav_logo">
-                    <a class="defaultLogo" href="https://www.us.es" target="_blank" title="Universidad de Sevilla">
-                        <img src="{{ url_for('static', filename='logo_us.png') }}" alt="Logo de la universidad">
-                    </a>
-                    <a class="mediaLogo" href="https://www.informatica.us.es/" title="ETSII">
-                        <img src="{{ url_for('static', filename='logo_etsii.png') }}" alt="Logo de la facultad">
-                    </a>                    
-                </div>                
-            </div>            
+                <div class="container">
+                    <div id="fav_logo">
+                        <a class="defaultLogo" href="https://www.us.es" target="_blank" title="Universidad de Sevilla">
+                            <img src="{{ url_for('static', filename='logo_us.png') }}" alt="Logo de la universidad">
+                        </a>
+                        <a class="mediaLogo" href="https://www.informatica.us.es/" title="ETSII">
+                            <img src="{{ url_for('static', filename='logo_etsii.png') }}" alt="Logo de la facultad">
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>      
+
         </header>
-        <a href="{{ url_for('control_panel_blueprint.index') }}" id="boton-cancelar">Panel de control</a>
         
         <div class="login-container">
             <h2>Iniciar sesión</h2>
+
+            {% with messages = get_flashed_messages() %}
+
+            {% if messages %}
+            <br/>
+            {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% endwith %}
+
+
+
             <form action="/login" method="POST">
                 <div class="form-group">
                     <label for="username">Usuario:</label>
@@ -40,6 +66,10 @@
         </div>
  
         <script src="{{ url_for('static', filename='javascript/login.js') }}"></script>
+         <!-- Bootstrap JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </BODY>
 
   </HTML>
