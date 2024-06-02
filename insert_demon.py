@@ -76,32 +76,43 @@ def buffer_process(RB1_HOST, RB1_PORT):
         time.sleep(5)
         parse_data = data_parsing(data) #{'id': 'rb1', 'temperatura': 24.5, 'humedad': 51.0, 'ip': '169.254.249.146'}
         if is_healthy(parse_data):
-            #check_measure_to_email(parse_data)
+            check_measure_to_email(parse_data)
             insertar_datos(parse_data)
 
 
 
 def get_alert():
-   alerts = alert.get_data_db()
+   alerts = alert.get_alerts_db()
    return alerts
 
 def check_measure_to_email(data):
     alerts_list = get_alert()
-    for alert in alerts_list:
-        _, alert_name, alert_rb, alert_email, alert_temp, alert_hum = alert
-        if data["id"] == alert_rb:
-            if data["temperatura"] >= alert_temp and data["humedad"] >= alert_hum:
-                mail.send_alert(alert_name,alert_email,alert_rb)
-               
-
- 
-
-
     
+    
+    if not isinstance(alerts_list, list):
+        print("No alerts found.")
+        return
+    
+    for alert in alerts_list:
+        print(alert)
+        _, alert_nombre, alert_rb, alert_mail, alert_temp_max, alert_temp_min, alert_hum_max, alert_hum_min = alert
+        if data["id"] == alert_rb:
+            temp_exceeds_max = data["temperatura"] > alert_temp_max
+            temp_exceeds_min = data["temperatura"] < alert_temp_min
+            hum_exceeds_max = data["humedad"] > alert_hum_max
+            hum_exceeds_min = data["humedad"] < alert_hum_min
+            
+            if temp_exceeds_max or temp_exceeds_min or hum_exceeds_max or hum_exceeds_min:
+                mail.send_alert(alert)
+                alert.add_alert_issued_db(alert_nombre, alert_rb, alert_mail, alert_temp_max, alert_temp_min, alert_hum_max, alert_hum_min)
+                alert.delete_alert_db(alert_nombre)
+
+   
     
 
 if __name__ == '__main__':
     RB1_HOST = '169.254.249.146'
     RB1_PORT = 8888
     buffer_process(RB1_HOST, RB1_PORT)
-    #print(get_alert())
+    
+

@@ -1,5 +1,9 @@
 body {
     font-family: Arial, sans-serif;
+    
+    justify-content: center;
+    
+    
 }
 
 .fav_header {
@@ -74,26 +78,38 @@ footer {
 
 
 
-.user_form_container {
+.user_container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 50px;
+}
+
+
+/* Contenedor del formulario de usuario */
+.user_form_container, .user_list_container {
     max-width: 500px;
-    margin: 50px auto;
+    margin: 0 20px;
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Encabezado del formulario */
 .user_form h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
 }
 
+/* Grupos del formulario */
 .form_group {
     margin-bottom: 15px;
 }
 
+/* Etiquetas del formulario */
 .form_group label {
     display: block;
     margin-bottom: 5px;
@@ -101,6 +117,7 @@ footer {
     font-weight: bold;
 }
 
+/* Entradas del formulario */
 .form_group input {
     width: 100%;
     padding: 10px;
@@ -109,6 +126,7 @@ footer {
     box-sizing: border-box;
 }
 
+/* Botón del formulario */
 .form_group button {
     width: 100%;
     padding: 10px;
@@ -117,35 +135,66 @@ footer {
     border-radius: 3px;
     color: white;
     cursor: pointer;
+    background-color: #28a745;
     transition: background-color 0.3s ease;
 }
 
+.form_group button:hover {
+    background-color: #218838;
+}
+
+/* Contenedor del formulario */
 .user_form_container {
-    float: left; /* Alinear a la izquierda */
-    width: 50%; /* Opcional: ajustar el ancho según tus necesidades */
+    flex: 1;
 }
 
+/* Contenedor de la lista de usuarios */
 .user_list_container {
-    float: left; /* Alinear a la izquierda */
-    width: 50%; /* Opcional: ajustar el ancho según tus necesidades */
-    padding-left: 20px; /* Agregar espacio a la izquierda para separarlo del form */
+    flex: 1;
 }
 
-/* Estilos adicionales para el formulario */
-.user_form {
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilos adicionales para la lista de usuarios */
+/* Encabezado de la lista de usuarios */
 .user_list_container h2 {
-    margin-top: 0; /* Eliminar el margen superior */
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
 }
 
-/* Estilos para los botones */
+/* Estilos de la lista de usuarios */
+#userList {
+    list-style: none;
+    padding: 0;
+}
+
+#userList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+/* Botón eliminar */
+#userList button {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    background-color: #dc3545;
+    transition: background-color 0.3s ease;
+}
+
+#userList button:hover {
+    background-color: #c82333;
+}
+
+/* Estilos adicionales para el botón */
 .btn {
     padding: 10px 20px;
     border: none;
@@ -160,14 +209,4 @@ footer {
 
 .btn-success:hover {
     background-color: #218838;
-}
-
-/* Estilos adicionales para los elementos de la lista */
-#userList {
-    list-style: none;
-    padding: 0;
-}
-
-#userList li {
-    margin-bottom: 10px;
 }

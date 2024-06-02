@@ -47,23 +47,6 @@ body {
     color: #333;
 }
 
-.btn {
-    padding: 5px 10px;
-    font-size: 14px;
-    border: none;
-    border-radius: 3px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-}
-
 
 footer {
     position: fixed;
@@ -87,9 +70,11 @@ footer {
 
 
 
-h2 {
-    color: #333;
-}
+
+
+
+
+
 
 
 
@@ -101,7 +86,6 @@ h2 {
     max-width: 600px; /* Limitar el ancho máximo */
     margin: 0% auto; /* Centrar el contenedor horizontalmente */
 }
-
 
 #formulario-alerta {
     padding: 0; /* Elimina el padding para hacerlo más compacto */
@@ -115,9 +99,7 @@ label {
 
 #nombre,
 #correo,
-#temperatura,
-#select-maquinas,
-#humedad {
+#select-maquinas {
     width: calc(100% - 20px); /* Ajusta el ancho dejando un margen */
     margin-left: 10px; /* Margen izquierdo */
     margin-right: 10px; /* Margen derecho */
@@ -127,6 +109,21 @@ label {
     margin-bottom: 15px; /* Ajusta el margen inferior */
     background-color: #fff; /* Fondo blanco */
     font-size: 14px; /* Tamaño de fuente */
+}
+
+#temperatura_max,
+#temperatura_min,
+#humedad_max,
+#humedad_min {
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    font-size: 14px;
 }
 
 #boton-guardar,
@@ -180,4 +177,11 @@ label {
     display: flex;
     justify-content: space-between; /* Alinea los botones horizontalmente */
     margin-top: 20px; /* Añade un poco de espacio arriba de los botones */
+}
+
+.contenedor-principal {
+    min-height: 100vh; /* Asegura que el contenedor principal ocupe al menos toda la altura de la ventana */
+    position: relative; /* Posiciona relativamente para que el pie de página pueda estar fijo al fondo */
+    box-sizing: border-box; /* Incluye el padding y border en el tamaño total */
+    padding-bottom: 140px; /* Deja espacio para el pie de página */
 }

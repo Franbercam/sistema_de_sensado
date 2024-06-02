@@ -18,24 +18,31 @@ def initialize_database():
     )''')
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS alerts (
-            id INTEGER PRIMARY KEY, 
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
             nombre TEXT, 
             maquina TEXT, 
             email TEXT, 
-            temperatura REAL, 
-            humedad REAL
+            temperatura_max REAL,
+            temperatura_min REAL, 
+            humedad_max REAL,
+            humedad_min REAL
         ) ''')
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS alerts_issued (
-            id INTEGER PRIMARY KEY, 
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
             nombre TEXT, 
             maquina TEXT, 
             email TEXT, 
-            temperatura REAL, 
-            humedad REAL
+            temperatura_max REAL,
+            temperatura_min REAL, 
+            humedad_max REAL,
+            humedad_min REAL
         ) ''')
     conn.commit()
     conn.close()
+
+
+## OPERACIONES CON ALERTAS ##
 
 def get_alerts_db():
     conn = sqlite3.connect(DATABASE)
@@ -53,13 +60,35 @@ def get_alerts_issued_db():
     conn.close()
     return data
 
-def add_alert_db(nombre, maquina, email, temperatura, humedad):
+def add_alert_db(nombre, maquina, email, temperatura_max, temperatura_min, humedad_max, humedad_min):
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
-    cursor.execute('INSERT INTO alerts (nombre, maquina, email, temperatura, humedad) VALUES (?, ?, ?, ?, ?)', (nombre, maquina, email, temperatura, humedad))
+    cursor.execute('INSERT INTO alerts (nombre, maquina, email, temperatura_max, temperatura_min, humedad_max, humedad_min) VALUES (?, ?, ?, ?, ?, ?, ?)', (nombre, maquina, email, temperatura_max, temperatura_min, humedad_max, humedad_min,))
     conn.commit()
     conn.close()
 
+def add_alert_issued_db(nombre, maquina, email, temperatura_max, temperatura_min, humedad_max, humedad_min):
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+    cursor.execute('INSERT INTO alerts_issued (nombre, maquina, email, temperatura_max, temperatura_min, humedad_max, humedad_min) VALUES (?, ?, ?, ?, ?, ?, ?)', (nombre, maquina, email, temperatura_max, temperatura_min, humedad_max, humedad_min,))
+    conn.commit()
+    conn.close()
+
+def delete_alert_db(nombre):
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM alerts WHERE nombre = ?', (nombre,))
+    conn.commit()
+    conn.close()
+
+def delete_alert_issued_db(nombre):
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM alerts_issued WHERE nombre = ?', (nombre,))
+    conn.commit()
+    conn.close()
+
+## OPERACIONES CON USUARIOS ##
 
 def get_users_db():
     conn = sqlite3.connect(DATABASE)
@@ -91,4 +120,3 @@ def delete_user_db(nombre):
     cursor.execute('DELETE FROM users WHERE nombre = ?', (nombre,))
     conn.commit()
     conn.close()
-

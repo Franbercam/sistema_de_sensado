@@ -30,42 +30,6 @@ function obtenerDatosInfluxDB() {
         });
 }
 
-function obtenerDatosSQlite() {
-    fetch('/control_panel/obtener_alertas')
-        .then(response => {
-            if (!response.ok) {
-                console.log(response);
-                throw new Error('Error al obtener alertas de SQlite');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Alertas obtenidas de SQlite:', data);
-            mostrarAlertasEnPantalla(data); // Llamar a la función para mostrar máquinas en pantalla
-        })
-        .catch(error => {
-            console.error('Error:', error);
-          
-        });
-}
-
-function mostrarAlertasEnPantalla(data) {
-    const listaAlertas = document.getElementById('lista-alertas');
-    listaAlertas.innerHTML = ''; // Limpiar cualquier contenido existente
-
-    if (!data || data.length === 0) {
-        listaAlertas.innerHTML = '<p>Añada una alerta</p>';
-        return;
-    }
-
-    data.forEach(alerta => {
-        const alertaDiv = document.createElement('div');
-        alertaDiv.classList.add('alerta');
-        alertaDiv.textContent = alerta;
-        listaAlertas.appendChild(alertaDiv);
-    });
-}
-
 function mostrarInformacionBD() {
     var tabla = document.getElementById("tabla-maquinas");
     
@@ -178,3 +142,42 @@ function ocultarDetallesMaquina() {
     sensor.classList.remove('mostrar-detalles');
 }
 
+
+
+
+
+function obtenerDatosSQlite() {
+    fetch('/control_panel/obtener_alertas')
+        .then(response => {
+            if (!response.ok) {
+                console.log(response);
+                throw new Error('Error al obtener alertas de SQlite');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Alertas obtenidas de SQlite:', data);
+            mostrarAlertasEnPantalla(data); // Llamar a la función para mostrar alertas en pantalla
+        })
+        .catch(error => {
+            console.error('Error:', error);
+          
+        });
+}
+
+function mostrarAlertasEnPantalla(data) {
+    const listaAlertas = document.getElementById('lista-alertas');
+    listaAlertas.innerHTML = ''; // Limpiar cualquier contenido existente
+
+    if (!data || data.length === 0) {
+        listaAlertas.innerHTML = '<p>No se ha emitido ninguna alerta</p>';
+        return;
+    }
+
+    data.forEach(alerta => {
+        const alertaDiv = document.createElement('div');
+        alertaDiv.classList.add('alerta');
+        alertaDiv.textContent = alerta;
+        listaAlertas.appendChild(alertaDiv);
+    });
+}

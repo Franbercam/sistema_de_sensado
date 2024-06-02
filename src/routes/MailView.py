@@ -22,15 +22,18 @@ def agregar_dato():
     nombre = data.get('nombre')
     maquina = data.get('maquina')
     email = data.get('correo')  # El campo en el formulario se llama 'correo'
-    temperatura = data.get('temperatura')
-    humedad = data.get('humedad')
+    temperatura_max = data.get('temperatura_max')
+    temperatura_min = data.get('temperatura_min')
+    humedad_max = data.get('humedad_max')
+    humedad_min = data.get('humedad_min')
+
 
     # Validar que se recibieron todos los campos requeridos
-    if not all([nombre, maquina, email, temperatura, humedad]):
+    if not all([nombre, maquina, email, temperatura_max, temperatura_min, humedad_max, humedad_min]):
         return jsonify({'error': 'Faltan campos requeridos'}), 400  # Bad request
 
     # Insertar los datos en la base de datos SQLite
-    alert.add_alert_db(nombre, maquina, email, temperatura, humedad)
+    alert.add_alert_db(nombre, maquina, email, temperatura_max, temperatura_min, humedad_max, humedad_min)
 
     return jsonify({'message': 'Datos agregados correctamente'}), 200  # OK
 

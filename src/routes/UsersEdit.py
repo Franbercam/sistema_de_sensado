@@ -37,10 +37,11 @@ def get_users():
 @main.route('/eliminar_usuario', methods=['POST'])
 def eliminar_usuario():
     data = request.json
+    
     usuario = data.get('username')
-
+    
     if not usuario:
         return jsonify({'error': 'Falta el nombre de usuario'}), 400
 
-    db.delete_user_db(usuario)
+    db.delete_user_db(usuario[0])
     return jsonify({'message': 'Usuario eliminado correctamente'}), 200

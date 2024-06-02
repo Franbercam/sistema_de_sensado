@@ -40,16 +40,6 @@
 
     <div class="contenedor-alertas-sensores">
 
-        <div class="contenedor-listado-alertas">
-            <h2>Alertas establecidas:</h2>
-            <div id="lista-alertas">
-                <!-- Contenido de la lista aquí -->
-            </div>
-            <a href="{{ url_for('mail_blueprint.index') }}" id="boton-establecer-alerta">Establecer alerta</a>
-
-
-        </div>
-
         <div class="sensor">
             <div id="contenedor-tabla">
                 <table id="tabla-maquinas">
@@ -64,6 +54,17 @@
 
             </div>
         </div>
+
+        <div class="contenedor-listado-alertas">
+            <h2>Alertas emitidas:</h2>
+            <div id="lista-alertas">
+                <!-- Contenido de la lista aquí -->
+            </div>
+            <a href="{{ url_for('mail_blueprint.index') }}" id="boton-establecer-alerta">Establecer alerta</a>
+
+        </div>
+
+        
 
     </div>
 

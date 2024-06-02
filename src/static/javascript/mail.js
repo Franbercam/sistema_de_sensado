@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
+
 function insertarAlertaDB(datosFormulario) {
     // Realizar una solicitud HTTP POST al servidor Flask
     fetch('/mail/agregar_dato', {
@@ -20,7 +21,8 @@ function insertarAlertaDB(datosFormulario) {
         return response.text();
     })
     .then(data => {
-        console.log("Exito al actualizar la alerta"); // Mensaje de confirmación del servidor
+        alert("Alerta establecida exitosamente"); // Mostrar una señal de alerta
+        window.location.reload(); // Recargar la página para limpiar el formulario
     })
     .catch(error => {
         console.error('Error:', error);
@@ -32,22 +34,24 @@ document.getElementById('formulario-alerta').addEventListener('submit', function
 
     // Recoger los datos del formulario
     let nombre = document.getElementById('nombre').value;
-    let maquina = document.getElementById('select-maquinas').value
+    let maquina = document.getElementById('select-maquinas').value;
     let correo = document.getElementById('correo').value;
-    let temperatura = document.getElementById('temperatura').value;
-    let humedad = document.getElementById('humedad').value;
+    let temperatura_max = document.getElementById('temperatura_max').value;
+    let temperatura_min = document.getElementById('temperatura_min').value;
+    let humedad_max = document.getElementById('humedad_max').value;
+    let humedad_min = document.getElementById('humedad_min').value;
 
     // Crear un objeto con los datos del formulario
     let datosFormulario = {
         nombre: nombre,
         maquina: maquina,
         correo: correo,
-        temperatura: temperatura,
-        humedad: humedad
+        temperatura_max: temperatura_max,
+        temperatura_min: temperatura_min,
+        humedad_max: humedad_max,
+        humedad_min: humedad_min
     };
-    console.log(datosFormulario)
-    insertarAlertaDB(datosFormulario)
-
+    insertarAlertaDB(datosFormulario);
 });
 
 function obtenerDatosInfluxDB() {

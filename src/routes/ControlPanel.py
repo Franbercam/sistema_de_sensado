@@ -22,6 +22,6 @@ def obtener_datos():
 
 @main.route('/obtener_alertas', methods=['GET'])
 def obtener_alertas():
-    datos = alert.get_alerts_db()
+    datos = alert.get_alerts_issued_db()
 
     return datos
