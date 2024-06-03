@@ -123,10 +123,6 @@ footer {
     margin-top: 10px;
 }
 
-#alerta {
-    display: block;
-    margin-top: 10px;
-}
 
 .recuadro-mantenimiento {
     border: 1px solid red;
@@ -139,17 +135,6 @@ footer {
     text-align: center;
 }
 
-.contenedor-listado-alertas {
-    background-color: #f9f9f9; /* Fondo claro */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    border-radius: 10px; /* Bordes redondeados */
-
-    padding: 20px; /* Espaciado interior */  
-    
-    max-width: 600px; /* Limitar el ancho máximo */
-    margin: 0% left; /* Centrar el contenedor horizontalmente */
-}
-
 .contenedor-alertas-sensores {
     display: flex;
     justify-content: center; /* Centra el contenido principal horizontalmente */
@@ -157,6 +142,61 @@ footer {
     gap: 20px; /* Espacio entre los elementos */
     padding: 20px; /* Espaciado interno para el contenedor */
 }
+
+
+
+
+
+
+
+
+.contenedor-listado-alertas {
+    background-color: #f9f9f9; /* Fondo claro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interior */     
+    width: 35%; /* Ancho fijo */
+    margin: 0% left; /* Centrar el contenedor horizontalmente */
+}
+
+.boton-borrar {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 100px;
+}
+
+.boton-borrar:hover {
+    background-color: #d32f2f; /* Color más oscuro para hover */
+}
+
+.alerta {
+    background-color: #ffebee;
+    border: 1px solid #ffcdd2;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%; /* Ancho completo del contenedor */
+    display: flex;
+    justify-content: space-between; /* Espacio entre contenido y botón */
+    align-items: center; /* Alineación vertical */
+
+}
+
+.contenedor-alerta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contenido-alerta {
+    flex-grow: 1;
+    margin-right: 10px; /* Espacio entre contenido y botón */
+}
+
 
 #boton-establecer-alerta {
     display: inline-block;
@@ -183,6 +223,16 @@ footer {
     outline: none; /* Sin borde de enfoque */
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Sombra alrededor del botón al enfocarlo */
 }
+
+
+
+
+
+
+
+
+
+
 
 #nombre-detalles {
     font-family: Arial, sans-serif; /* Elige una fuente fácil de leer */

@@ -28,6 +28,28 @@ def get_data_db():
 
     except Exception as e:
         return (f"An error occurred: {e}")
+    
+def get_data_by_name_db(name):
+    try:
+        query = f"""
+        from(bucket: "sistema_de_sensado")
+        |> range(start: -10m)
+        |> filter(fn: (r) => r._measurement == "my_measurement" and r.maquina == "{name}")
+        """
+        tables = query_api.query(query, org="Universidad de Sevilla")
+
+        data = []
+        for table in tables:
+            for record in table.records:
+                data.append(str(record))
+
+        res = records_to_dict(data)
+
+        return res
+
+    except Exception as e:
+        return f"An error occurred: {e}"
+
 
 
 

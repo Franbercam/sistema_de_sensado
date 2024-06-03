@@ -2,7 +2,7 @@ import influxdb_client, os, time
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 
-INFLUXDB_TOKEN = 'HvRPKymduvyxAaOPwqFTY5VjXdxNtufcMXfsbzf2Tu3eNdlStHiMQOt4pHvBNCPVjwm6Mf5cOiqweM6_mw_P_A=='
+INFLUXDB_TOKEN = 'YytQyoZl4naJMXTQwwFYCxDAoVEFME_A24YeX7g0qikyyU4uLi8APMgjgFgaNNRskWQw-bJa42ANoFutXadkww=='
 
 token = INFLUXDB_TOKEN
 org = "Universidad de Sevilla"
@@ -33,6 +33,27 @@ query = """from(bucket: "sistema_de_sensado")
  |> filter(fn: (r) => r._field == "humedad")"""
 tables = query_api.query(query, org="Universidad de Sevilla")
 
-for table in tables:
-  for record in table.records:
-    print(record)
+def get_data_by_name_db(name):
+    try:
+        query = f"""
+        from(bucket: "sistema_de_sensado")
+        |> range(start: -10m)
+        |> filter(fn: (r) => r._measurement == "my_measurement" and r.maquina == "{name}")
+        """
+        tables = query_api.query(query, org="Universidad de Sevilla")
+
+        data = []
+        for table in tables:
+            for record in table.records:
+                data.append(str(record))
+
+      
+        return data
+
+    except Exception as e:
+        return f"An error occurred: {e}"
+
+    
+print(get_data_by_name_db("rb1"))
+
+

@@ -2,10 +2,9 @@
 <HTML>
 
 <HEAD>
-    <TITLE>Panel de control</TITLE>
-
+    <TITLE>Información de las máquinas</TITLE>
     <link rel="shortcut icon" href="{{url_for('static', filename='favicon.png')}}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/control_panel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/raspinfo.css') }}">
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -14,7 +13,6 @@
 
 <BODY>
     <header>
-
         <div class="fav_header">
             <div class="container">
                 <div id="fav_logo">
@@ -29,45 +27,46 @@
                     <div id="usuario_header">
                         <a>@{{ current_user.username }}</a>
                     </div>
-                    <a class="btn btn-danger" id="cerrar-sesion" href="{{ url_for('login_blueprint.logout') }}">Cerrar sesión</a>
-                    <a class="btn btn-warning" href="{{ url_for('users_edit_blueprint.index') }}">Editar Usuarios</a>
+                    <a class="btn btn-danger" id="cerrar-sesion" href="{{ url_for('login_blueprint.logout') }}">Cerrar
+                        sesión</a>
+                    <a class="btn btn-primary" href="{{ url_for('control_panel_blueprint.index') }}">Panel de
+                        control</a>
                 </div>
             </div>
         </div>
-        
 
     </header>
 
 
-    <div class="contenedor-alertas-sensores">
 
-        <div class="sensor">
-            <div id="contenedor-tabla">
-                <table id="tabla-maquinas">
-                    <!-- Contenido de la tabla aquí -->
-                </table>
-            </div>
-            <div id="detalles-maquina" style="display: none;">
-                <div id="contenedor-detalles">
-                    <!-- Detalles de la máquina aquí -->
-                </div>
-                <button id="cerrar-detalles">Cerrar</button>
-
-            </div>
-        </div>
-
-        <div class="contenedor-listado-alertas">
-            <h2>Alertas emitidas:</h2>
-            <div id="lista-alertas">
-                <!-- Contenido de la lista aquí -->
-            </div>
-            <a href="{{ url_for('mail_blueprint.index') }}" id="boton-establecer-alerta">Establecer alerta</a>
-
-        </div>
-
-        
-
+    <div class="container">
+        <h1>Raspberry Pi Information</h1>
+        <h2>{{ machine_name }}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Temperature (°C)</th>
+                    <th>Humidity (%)</th>
+                    <th>IP Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for timestamp, data in machine_data.items() %}
+                <tr>
+                    <td>{{ timestamp }}</td>
+                    <td>{{ data[0] }}</td>
+                    <td>{{ data[1] }}</td>
+                    <td>{{ data[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
+
+
+
+
 
     <footer>
         <div class="footer-content">
@@ -78,12 +77,11 @@
 
     </footer>
 
-    <script src="{{ url_for('static', filename='javascript/control_panel.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/raspinfo.js') }}"></script>
     <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </BODY>
 
 </HTML>
