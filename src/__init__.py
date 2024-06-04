@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for
 from flask_login import LoginManager
 
-from .routes import ControlPanel, MailView, LoginView, UsersEdit, RaspInfo
+from .routes import ControlPanel, MailView, LoginView, UsersEdit, RaspInfo, GraphView
 from .database import local_db_controller as db
 from .models import UserModel
 
@@ -28,6 +28,7 @@ def init_app(config):
     app.register_blueprint(MailView.main, url_prefix='/mail')
     app.register_blueprint(UsersEdit.main, url_prefix='/users_edit')
     app.register_blueprint(RaspInfo.main, url_prefix='/raspinfo')
+    app.register_blueprint(GraphView.main, url_prefix='/graph')
 
     #Manejo de errores
     app.register_error_handler(401,status_401_404)

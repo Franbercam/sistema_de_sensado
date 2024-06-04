@@ -1,7 +1,6 @@
 body {
     font-family: Arial, sans-serif;    
     justify-content: center;
-
 }
 
 .fav_header {
@@ -73,18 +72,39 @@ footer {
     margin: 5px 0; /* Espaciado entre párrafos */
 }
 
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+
+
+
+
+
+
+
+.contenedor-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    width: 60%;
+    margin: 0 left;
+    padding: 0 20px;
 }
 
-h1, h2 {
-    text-align: center;
+#nombre-maquina { 
+      
+    margin: 0 auto;    
+    max-width: 800px; 
+    
+  }
+
+.contenedor-info-alertas {
+    padding-bottom: 140px; /* Deja espacio para el pie de página */
+    display: flex;
+    justify-content: center; /* Centra el contenido principal horizontalmente */
+    align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+    gap: 20px; /* Espacio entre los elementos */
 }
+
 
 table {
     width: 100%;
@@ -99,4 +119,64 @@ table th, table td {
 
 table th {
     background-color: #f2f2f2;
+}
+
+.contenedor-listado-alertas {
+    background-color: #f9f9f9; /* Fondo claro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interior */     
+    width: 35%; /* Ancho fijo */
+    margin: 0% left; /* Centrar el contenedor horizontalmente */
+}
+
+#boton-establecer-alerta {
+    display: inline-block;
+    background-color: #007bff; /* Color de fondo azul */
+    color: #fff; /* Color de texto blanco */
+    text-decoration: none; /* Sin subrayado */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: bold; /* Fuente en negrita */
+    cursor: pointer; /* Cambia el cursor a mano al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color de fondo */
+}
+
+.alerta {
+    background-color: #e0ffff;
+    border: 1px solid #a4f0ff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%; /* Ancho completo del contenedor */
+    display: flex;
+    justify-content: space-between; /* Espacio entre contenido y botón */
+    align-items: center; /* Alineación vertical */
+
+}
+
+.contenedor-alerta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contenido-alerta {
+    flex-grow: 1;
+    margin-right: 10px; /* Espacio entre contenido y botón */
+}
+
+.boton-borrar {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 100px;
+}
+
+.boton-borrar:hover {
+    background-color: #d32f2f; /* Color más oscuro para hover */
 }

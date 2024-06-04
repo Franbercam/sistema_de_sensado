@@ -3,11 +3,6 @@ document.addEventListener("DOMContentLoaded", function() {
     obtenerDatosInfluxDB();
     obtenerDatosSQlite();
 
-     // Agregar evento al botón cerrar
-     var botonCerrar = document.getElementById("cerrar-detalles");
-     botonCerrar.addEventListener("click", function() {
-        ocultarDetallesMaquina();
-     });
 });
 
 
@@ -65,8 +60,15 @@ function mostrarMaquinasEnPantalla(data) {
         botonVer.textContent = "Ver";
         celdaInformacion.appendChild(botonVer);
 
+        var botonGrafica = document.createElement("button");
+        botonGrafica.textContent = "Gráfica";
+        celdaInformacion.appendChild(botonGrafica);
+
         botonVer.addEventListener("click", function() {
             window.location.href = `/raspinfo?machine_name=${encodeURIComponent(key)}`;
+        });
+        botonGrafica.addEventListener("click", function() {
+            window.location.href = `/graph?machine_name=${encodeURIComponent(key)}`;
         });
     });
 }

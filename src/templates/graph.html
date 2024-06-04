@@ -4,11 +4,11 @@
 <HEAD>
     <TITLE>Información de las máquinas</TITLE>
     <link rel="shortcut icon" href="{{url_for('static', filename='favicon.png')}}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/raspinfo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/graph.css') }}">    
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
+    
 </HEAD>
 
 <BODY>
@@ -37,45 +37,16 @@
 
     </header>
 
-    <div id="nombre-maquina">
-        <h1>Mediciones de {{ machine_name }}</h1>
+    
+    <h1>Gráficas de Temperatura y Humedad</h1>
+    <canvas id="temperatureChart"></canvas>
+    <canvas id="humidityChart"></canvas>
+
+    <div id="chart-data" data-labels='{{ labels | tojson | safe }}'
+        data-temperatures='{{ temperatures | tojson | safe }}' data-humidities='{{ humidities | tojson | safe }}'>
     </div>
     
 
-    <div class="contenedor-info-alertas">
-        <div class="contenedor-info">
-           
-            <table>
-                <thead>
-                    <tr>
-                        <th>UTC</th>
-                        <th>Temperatura (°C)</th>
-                        <th>Humedad (%)</th>
-                        <th>Dirección IP</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for timestamp, data in machine_data.items() | reverse %}
-                    <tr>
-                        <td>{{ timestamp }}</td>
-                        <td>{{ data[0] }}</td>
-                        <td>{{ data[1] }}</td>
-                        <td>{{ data[2] }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
-        <div class="contenedor-listado-alertas">
-            <h2>Alertas establecidas</h2>
-            <div id="lista-alertas">
-                <!-- Contenido de la lista aquí -->
-            </div>
-            <a href="{{ url_for('mail_blueprint.index') }}" id="boton-establecer-alerta">Establecer alerta</a>
-
-        </div>
-    </div>
 
 
 
@@ -90,11 +61,26 @@
 
     </footer>
 
-    <script src="{{ url_for('static', filename='javascript/raspinfo.js') }}"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
+    <script src="{{ url_for('static', filename='javascript/graph.js') }}"></script>
+
+
     <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    
+
+    
+   
+    
 </BODY>
 
 </HTML>
