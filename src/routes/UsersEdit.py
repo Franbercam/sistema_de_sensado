@@ -2,16 +2,20 @@ from flask import Blueprint, render_template, request, jsonify
 from flask_login import login_required
 
 from ..database import local_db_controller as db
+from ..utils.Auth import admin_required
 
 main = Blueprint('users_edit_blueprint', __name__, url_prefix='/users_edit')
 
 @main.route('/')
 @login_required
+@admin_required
 def index():  
 
     return (render_template("users_edit.html"))
 
 @main.route('/annadir_usuario', methods=['POST'])
+@login_required
+@admin_required
 def annadir_usuario():
     data = request.json
 
@@ -30,11 +34,15 @@ def annadir_usuario():
 
 
 @main.route('/get_users', methods=['GET'])
+@login_required
+@admin_required
 def get_users():
     usuarios = db.get_users_name_db()  
     return jsonify({'users': usuarios}), 200
 
 @main.route('/eliminar_usuario', methods=['POST'])
+@login_required
+@admin_required
 def eliminar_usuario():
     data = request.json
     

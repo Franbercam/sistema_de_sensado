@@ -31,6 +31,13 @@ def get_id(text):
     else:
         return None
     
+def get_location(text):
+    pattern = r"'ubicacion': '([^']*)'"
+    match = re.search(pattern, text)
+    if match:
+        return match.group(1)
+    else:
+        return None    
 
     
 def get_datetime(text):
@@ -75,22 +82,19 @@ def records_to_dict(data_list):
     res = dict()
     for data in data_list:
         id = get_id(data)
+        location = get_location(data)
         
-        if id not in res:            
+        if location not in res:
+            res[location] = dict()
+        
+        if id not in res[location]:            
             id_value = dict()
             time = get_datetime(data)
-            id_value[time] = extract_values(data_list,time)  
-
+            id_value[str(time)] = extract_values(data_list, time)
+            res[location][id] = id_value
         else:
             time = get_datetime(data)
-            id_value[time] = extract_values(data_list,time)  
-
-        res[id] = id_value
+            res[location][id][str(time)] = extract_values(data_list, time)
     
     return res
 
-dic = records_to_dict(data)
-
-dic2 =dic['rb1']
-
-print(dic2)

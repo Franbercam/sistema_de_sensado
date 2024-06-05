@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const temperatures = JSON.parse(document.getElementById('chart-data').dataset.temperatures);
     const humidities = JSON.parse(document.getElementById('chart-data').dataset.humidities);
 
+    function recargarPagina() {
+        location.reload();
+      }
+      
+      setInterval(recargarPagina, 20000);
+
     // Gráfica de Temperatura
     const ctxTemp = document.getElementById('temperatureChart').getContext('2d');
     const temperatureChart = new Chart(ctxTemp, {

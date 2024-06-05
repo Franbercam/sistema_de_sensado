@@ -72,3 +72,46 @@ footer {
 .footer-content p {
     margin: 5px 0; /* Espaciado entre párrafos */
 }
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Chart container styles */
+.charts-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20px;
+    padding-bottom: 140px; /* Deja espacio para el pie de página */
+}
+
+/* Individual chart styles */
+canvas {
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin: 10px;
+    max-width: 45%;
+    flex: 1 1 45%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .charts-container {
+        flex-direction: column;
+    }
+
+    canvas {
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+}
+
+
+

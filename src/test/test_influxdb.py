@@ -39,7 +39,10 @@ def get_data_by_name_db(name):
         from(bucket: "sistema_de_sensado")
         |> range(start: -10m)
         |> filter(fn: (r) => r._measurement == "my_measurement" and r.maquina == "{name}")
-        |> tz(tz: "America/Chicago")
+        |> map(fn: (r) => ({{
+            r with
+            _time: int(v: r._time) + 2 * 60 * 60 * 1000000000
+        }}))
         """
         tables = query_api.query(query, org="Universidad de Sevilla")
 

@@ -29,5 +29,5 @@ def index():
     temperatures = [values[0] for values in formatted_data.values()]
     humidities = [values[1] for values in formatted_data.values()]
 
-    return render_template('graph.html', labels=labels, temperatures=temperatures, humidities=humidities)
+    return render_template('graph.html', labels=labels, temperatures=temperatures, humidities=humidities,data=data, machine_name=machine_name)
 

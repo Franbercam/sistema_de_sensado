@@ -14,7 +14,8 @@ def initialize_database():
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nombre TEXT NOT NULL UNIQUE,
-        contraseña TEXT NOT NULL
+        contraseña TEXT NOT NULL,
+        es_admin INTEGER DEFAULT 0           
     )''')
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS alerts (
@@ -114,9 +115,26 @@ def add_user_db(nombre, contraseña):
     conn.commit()
     conn.close()
 
+def add_admin_db(nombre, contraseña):
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+    pass_hash = generate_password_hash(contraseña)
+    cursor.execute('INSERT INTO users (nombre, contraseña, es_admin) VALUES (?, ?, ?)', (nombre, pass_hash,1))
+    conn.commit()
+    conn.close()
+
 def delete_user_db(nombre):
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
     cursor.execute('DELETE FROM users WHERE nombre = ?', (nombre,))
     conn.commit()
     conn.close()
+
+def delete_table_user_db():
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+    cursor.execute('DROP TABLE users')
+    conn.commit()
+    conn.close()
+
+

@@ -73,7 +73,23 @@ function mostrarMaquinasEnPantalla(data) {
     });
 }
 
-
+function mostrarInformacionBD() {
+    var tabla = document.getElementById("tabla-maquinas");
+    
+    // Eliminar la tabla si existe
+    if (tabla) {
+        tabla.parentNode.removeChild(tabla);
+    }
+    
+    // Crear el recuadro de mantenimiento
+    var recuadroMantenimiento = document.createElement("div");
+    recuadroMantenimiento.className = "recuadro-mantenimiento";
+    recuadroMantenimiento.textContent = "La base de datos está en mantenimiento. Por favor, inténtelo más tarde.";
+    
+    // Insertar el recuadro en el lugar de la tabla
+    var contenedor = document.getElementById("contenedor-tabla");
+    contenedor.appendChild(recuadroMantenimiento);
+}
 
 function obtenerDatosSQlite() {
     fetch('/control_panel/obtener_alertas')
@@ -93,6 +109,10 @@ function obtenerDatosSQlite() {
         });
 }
 
+
+
+
+
 function mostrarAlertasEnPantalla(data) {
     const listaAlertas = document.getElementById('lista-alertas');
     listaAlertas.innerHTML = '';
@@ -109,11 +129,21 @@ function mostrarAlertasEnPantalla(data) {
         
         const alertaNombre = document.createElement('span');
         
-        // Acceder al segundo elemento del array para obtener el nombre
+        // Acceder a los elementos del array para obtener los datos necesarios
         if (alerta.length > 1) {
-            alertaNombre.textContent = alerta[1];
+            const nombre = alerta[1];
+            const tem_max = alerta[4];
+            const tem_min = alerta[5];
+            const hum_max = alerta[6];
+            const hum_min = alerta[7];
+            alertaNombre.textContent = nombre;
+            alertaNombre.style.cursor = 'pointer';
+            
+            alertaNombre.onclick = () => {
+                mostrarDetalles(nombre, tem_max, tem_min, hum_max, hum_min);
+            };
         } else {
-            console.warn('El objeto alerta no tiene un segundo elemento:', alerta);
+            console.warn('El objeto alerta no tiene los elementos esperados:', alerta);
             alertaNombre.textContent = 'Nombre desconocido';
         }
         
@@ -127,6 +157,47 @@ function mostrarAlertasEnPantalla(data) {
         listaAlertas.appendChild(alertaDiv);
     });
 }
+
+function mostrarDetalles(nombre, tem_max, tem_min, hum_max, hum_min) {
+    const modal = document.getElementById('detalle-modal');
+    const modalContent = document.getElementById('detalle-modal-content');
+    const modalNombre = document.getElementById('modal-nombre');
+    const modalTemMax = document.getElementById('modal-tem-max');
+    const modalTemMin = document.getElementById('modal-tem-min');
+    const modalHumMax = document.getElementById('modal-hum-max');
+    const modalHumMin = document.getElementById('modal-hum-min');
+    
+    modalNombre.textContent = nombre;
+    modalTemMax.textContent = `Tem Máx: ${tem_max}`;
+    modalTemMin.textContent = `Tem Mín: ${tem_min}`;
+    modalHumMax.textContent = `Hum Máx: ${hum_max}`;
+    modalHumMin.textContent = `Hum Mín: ${hum_min}`;
+    
+    modal.style.display = 'block';
+}
+
+function cerrarModal() {
+    const modal = document.getElementById('detalle-modal');
+    modal.style.display = 'none';
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('detalle-modal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 function borrarAlerta(nombre) {
     fetch('/control_panel/borrar_alerta', {
