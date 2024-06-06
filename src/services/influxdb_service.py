@@ -49,6 +49,27 @@ def get_data_by_name_db(name):
 
     except Exception as e:
         return f"An error occurred: {e}"
+    
+def get_data_by_name_position__db(location, name):
+    try:
+        query = f"""
+        from(bucket: "sistema_de_sensado")
+        |> range(start: -10m)
+        |> filter(fn: (r) => r._measurement == "my_measurement" and r.ubicacion == "{location}" and r.maquina == "{name}")
+        """
+        tables = query_api.query(query, org="Universidad de Sevilla")
+
+        data = []
+        for table in tables:
+            for record in table.records:
+                data.append(str(record))
+
+        res = records_to_dict(data)
+
+        return res
+
+    except Exception as e:
+        return f"An error occurred: {e}"
 
 
 
@@ -62,6 +83,14 @@ def get_id(text):
         return match.group(1)
     else:
         return None
+    
+def get_location(text):
+    pattern = r"'ubicacion': '([^']*)'"
+    match = re.search(pattern, text)
+    if match:
+        return match.group(1)
+    else:
+        return None    
     
 
     
@@ -103,7 +132,7 @@ def extract_values(data_list, date):
     
     return (temperature, humidity, ip)
 
-def records_to_dict(data_list):
+def records_to_dict2(data_list):
     res = dict()
     for data in data_list:
         id = get_id(data)
@@ -118,6 +147,27 @@ def records_to_dict(data_list):
             id_value[str(time)] = extract_values(data_list,time)  
 
         res[id] = id_value
+    
+    return res
+
+
+def records_to_dict(data_list):
+    res = dict()
+    for data in data_list:
+        id = get_id(data)
+        location = get_location(data)
+        
+        if location not in res:
+            res[location] = dict()
+        
+        if id not in res[location]:            
+            id_value = dict()
+            time = get_datetime(data)
+            id_value[str(time)] = extract_values(data_list, time)
+            res[location][id] = id_value
+        else:
+            time = get_datetime(data)
+            res[location][id][str(time)] = extract_values(data_list, time)
     
     return res
 

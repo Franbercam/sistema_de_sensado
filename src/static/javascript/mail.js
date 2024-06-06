@@ -75,10 +75,8 @@ function obtenerDatosInfluxDB() {
 
 function mostrarMaquinasEnPantalla(data) {
     var select = document.getElementById("select-maquinas");
-    // Limpiar select antes de agregar nuevos datos
     select.innerHTML = "";
 
-    // Verificar si no hay máquinas conectadas
     if (Object.keys(data).length === 0) {
         var opcion = document.createElement("option");
         opcion.textContent = "No se detectan máquinas conectadas";
@@ -88,14 +86,12 @@ function mostrarMaquinasEnPantalla(data) {
         return;
     }
 
-    // Iterar sobre las claves del diccionario 'data'
-    Object.keys(data).forEach(function(key) {
-        // Crear una nueva opción
+    Object.keys(data).forEach(function(machineName) {
         var opcion = document.createElement("option");
-        opcion.value = key; // Valor de la opción (nombre de la máquina)
-        opcion.textContent = key; // Texto de la opción (nombre de la máquina)
+        opcion.value = machineName;
+        var location = data[machineName].location;
+        opcion.textContent = machineName ;
 
-        // Agregar la opción al select
         select.appendChild(opcion);
     });
 }

@@ -39,6 +39,18 @@ def agregar_dato():
 
 @main.route('/obtener_datos', methods=['GET'])
 def obtener_datos():
-    datos = db.get_data_db()
+    try:
+        datos = db.get_data_db()
 
-    return (datos)
+        # Flatten the data to have a list of machines with their locations
+        flattened_data = {}
+        for location, machines in datos.items():
+            for machine, details in machines.items():
+                flattened_data[machine] = {
+                    "location": location,
+                    "details": details
+                }
+
+        return jsonify(flattened_data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500

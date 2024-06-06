@@ -13,9 +13,10 @@ main = Blueprint('graph_blueprint', __name__, url_prefix='/graph')
 @login_required
 def index():
     machine_name = request.args.get('machine_name')
+    location = request.args.get('location')
     
     # Obtener los datos de la base de datos
-    data = (db.get_data_by_name_db(machine_name))[machine_name]
+    data = db.get_data_by_name_position__db(location, machine_name)[location][machine_name]
     
     # Convertir las claves a objetos datetime si son cadenas
     formatted_data = {}

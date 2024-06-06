@@ -29,16 +29,6 @@ function mostrarMaquinasEnPantalla(data) {
     var tabla = document.getElementById("tabla-maquinas");
     tabla.innerHTML = "";
 
-    if (tabla.getElementsByTagName('tr').length === 0) {
-        var encabezado = tabla.insertRow();
-        var th1 = document.createElement("th");
-        th1.textContent = "Máquinas conectadas";
-        var th2 = document.createElement("th");
-        th2.textContent = "Información";
-        encabezado.appendChild(th1);
-        encabezado.appendChild(th2);
-    }
-
     if (Object.keys(data).length === 0) {
         var fila = tabla.insertRow();
         var celdaMensaje = fila.insertCell();
@@ -48,27 +38,37 @@ function mostrarMaquinasEnPantalla(data) {
         return;
     }
 
-    Object.keys(data).forEach(function(key) {
-        var value = data[key];
-        var fila = tabla.insertRow();
+    Object.keys(data).forEach(function(lugar) {
+        var maquinas = data[lugar];
+        var filaLugar = tabla.insertRow();
+        var celdaLugar = filaLugar.insertCell();
+        celdaLugar.colSpan = 2;
+        celdaLugar.textContent = lugar;
+        celdaLugar.style.fontWeight = "bold";
+        celdaLugar.style.textAlign = "center";
 
-        var celdaNombre = fila.insertCell();
-        celdaNombre.textContent = key;
+        Object.keys(maquinas).forEach(function(maquina) {
+            var detalles = maquinas[maquina];
+            var filaMaquina = tabla.insertRow();
 
-        var celdaInformacion = fila.insertCell();
-        var botonVer = document.createElement("button");
-        botonVer.textContent = "Ver";
-        celdaInformacion.appendChild(botonVer);
+            var celdaMaquina = filaMaquina.insertCell();
+            celdaMaquina.textContent = maquina;
 
-        var botonGrafica = document.createElement("button");
-        botonGrafica.textContent = "Gráfica";
-        celdaInformacion.appendChild(botonGrafica);
+            var celdaBotones = filaMaquina.insertCell();
+            var botonVer = document.createElement("button");
+            botonVer.textContent = "Ver";
+            celdaBotones.appendChild(botonVer);
 
-        botonVer.addEventListener("click", function() {
-            window.location.href = `/raspinfo?machine_name=${encodeURIComponent(key)}`;
-        });
-        botonGrafica.addEventListener("click", function() {
-            window.location.href = `/graph?machine_name=${encodeURIComponent(key)}`;
+            var botonGrafica = document.createElement("button");
+            botonGrafica.textContent = "Gráfica";
+            celdaBotones.appendChild(botonGrafica);
+
+            botonVer.addEventListener("click", function() {
+                window.location.href = `/raspinfo?machine_name=${encodeURIComponent(maquina)}&location=${encodeURIComponent(lugar)}`;
+            });
+            botonGrafica.addEventListener("click", function() {
+                window.location.href = `/graph?machine_name=${encodeURIComponent(maquina)}&location=${encodeURIComponent(lugar)}`;
+            });
         });
     });
 }
@@ -187,15 +187,6 @@ window.onclick = function(event) {
         modal.style.display = 'none';
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 

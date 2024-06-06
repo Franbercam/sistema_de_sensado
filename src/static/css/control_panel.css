@@ -52,15 +52,6 @@ body {
     margin-right: 5px;
 }
 
-
-
-
-
-
-.sensor {
-    text-align: center; 
-}
-
 footer {
     position: fixed;
     bottom: 0;
@@ -81,46 +72,76 @@ footer {
     margin: 5px 0; /* Espaciado entre párrafos */
 }
 
-#tabla-maquinas {
-    width: 30%;
-    border-collapse: collapse;
-    margin: 20px auto;
-}
-#tabla-maquinas th, #tabla-maquinas td {
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
-}
 
-#tabla-maquinas th {
-    background-color: #f2f2f2;
+.sensor {
+    text-align: center;
+    font-family: Arial, sans-serif; /* Fuente profesional */
+    padding: 20px;
+    background-color: #f9f9f9; /* Fondo claro */
+    width: 50%;
 }
 
 #contenedor-tabla {
-    width: 70%; /* Reducimos el ancho para dejar espacio al detalle */
-    float: left; /* Mantenemos el flotado a la izquierda */
-    margin-right: 5%; /* Añadimos un margen a la derecha para separar del detalle */
+    width: 100%;
+    float: left;
+    margin-right: 5%;
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para un efecto de elevación */
+    border-radius: 8px; /* Bordes redondeados */
 }
 
-#detalles-maquina {
-    width: 25%; /* Ajustamos el ancho del detalle */
-    float: left; /* Flotamos el detalle a la izquierda */
-    display: none; /* Lo mantenemos oculto inicialmente */
-    text-align: center; /* Centramos horizontalmente el contenido */
+#tabla-maquinas {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    font-size: 16px; /* Tamaño de fuente ajustado */
+    color: #333; /* Color de texto */
 }
 
-.mostrar-detalles #contenedor-tabla {
-    width: 45%; /* Cuando se muestren los detalles, reducimos el ancho de la tabla */
+#tabla-maquinas th, #tabla-maquinas td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 12px; /* Padding ajustado */
 }
 
-.mostrar-detalles #detalles-maquina {
-    display: block; /* Mostramos los detalles */
+#tabla-maquinas th {
+    background-color: #4CAF50; /* Fondo verde profesional */
+    color: white; /* Texto blanco */
+    font-weight: bold; /* Texto en negrita */
 }
 
+#tabla-maquinas td {
+    background-color: #ffffff; /* Fondo blanco */
+}
 
-#cerrar-detalles {
-    display: block;
-    margin-top: 10px;
+#tabla-maquinas tr:nth-child(even) {
+    background-color: #f2f2f2; /* Fondo gris claro para filas pares */
+}
+
+#tabla-maquinas button {
+    background-color: #4CAF50; /* Fondo verde */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px; /* Tamaño de fuente ajustado */
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+#tabla-maquinas button:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50; /* Borde verde al pasar el ratón */
+}
+
+#tabla-maquinas button:active {
+    background-color: #3e8e41; /* Fondo verde oscuro al hacer clic */
+    color: white;
 }
 
 
@@ -232,13 +253,6 @@ footer {
 }
 
 
-
-
-
-
-
-
-
 .contenedor-alerta {
     display: flex;
     justify-content: space-between;
@@ -276,7 +290,6 @@ footer {
     outline: none; /* Sin borde de enfoque */
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Sombra alrededor del botón al enfocarlo */
 }
-
 
 #nombre-detalles {
     font-family: Arial, sans-serif; /* Elige una fuente fácil de leer */

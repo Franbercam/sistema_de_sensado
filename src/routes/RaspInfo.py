@@ -11,15 +11,17 @@ from ..database import local_db_controller as alert
 @login_required
 def index():
     machine_name = request.args.get('machine_name')
-    machine_data =(db.get_data_by_name_db(machine_name))[machine_name]
-    
+    location = request.args.get('location')
+    machine_data = db.get_data_by_name_position__db(location, machine_name)[location][machine_name]
+
     return render_template("raspinfo.html", machine_name=machine_name, machine_data=machine_data)
+
 
 @main.route('/obtener_alertas', methods=['GET'])
 def obtener_alertas():
     datos = alert.get_alerts_db()
 
-    return datos
+    return datos    
 
 @main.route('/borrar_alerta', methods=['POST'])
 def borrar_alerta():
@@ -30,7 +32,7 @@ def borrar_alerta():
         return jsonify({'error': 'No se proporcionó el nombre de la alerta'}), 400
 
     try:
-        result = alert.delete_alert_issued_db(nombre)
+        result = alert.delete_alert_db(nombre)
         return jsonify({'message': 'Alerta borrada correctamente'}), 200
         
     except Exception as e:
