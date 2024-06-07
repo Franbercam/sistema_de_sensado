@@ -15,7 +15,7 @@ KEY = os.getenv('KEY')
 
 BODY_TEMPLATE = 'Los valores umbrales para {} han sido superados.\n\nDetalles de la alerta:\n'
 
-def send_alert(alerta):
+def send_alert(alerta, dato):
     try:
         _, alert_nombre, alert_rb, alert_mail, alert_temp_max, alert_temp_min, alert_hum_max, alert_hum_min = alerta
         msg = MIMEMultipart()
@@ -25,10 +25,18 @@ def send_alert(alerta):
 
         body = BODY_TEMPLATE.format(alert_nombre)
         body += f"Máquina: {alert_rb}\n"
-        body += f"Temperatura Máxima: {alert_temp_max}\n"
-        body += f"Temperatura Mínima: {alert_temp_min}\n"
-        body += f"Humedad Máxima: {alert_hum_max}\n"
-        body += f"Humedad Mínima: {alert_hum_min}\n"
+        body += f"Temperatura Actual: {dato['temperatura']}°C\n"
+        body += f"Humedad Actual: {dato['humedad']}%\n"
+        body += f"IP de la Máquina: {dato['ip']}\n"
+        body += f"Ubicación: {dato['ubicacion']}\n\n"
+        body += f"Umbrales Configurados:\n"
+        body += f"  - Temperatura Máxima: {alert_temp_max}°C\n"
+        body += f"  - Temperatura Mínima: {alert_temp_min}°C\n"
+        body += f"  - Humedad Máxima: {alert_hum_max}%\n"
+        body += f"  - Humedad Mínima: {alert_hum_min}%\n\n"
+        body += "Por favor, tome las medidas necesarias para resolver esta situación.\n\n"
+        body += "Atentamente,\n"
+        body += "Sistema de Monitoreo"
 
         msg.attach(MIMEText(body, 'plain'))
 

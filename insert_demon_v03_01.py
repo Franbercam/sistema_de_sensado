@@ -22,6 +22,12 @@ INFLUXDB_BUCKET = "sistema_de_sensado"
 write_client = influxdb_client.InfluxDBClient(url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
 write_api = write_client.write_api(write_options=SYNCHRONOUS)
 
+# Diccionario para mantener los contadores de alertas
+alert_counters = {}
+
+# Número de veces que se debe superar el umbral para enviar una alerta
+THRESHOLD_TIMES = 3
+
 def conectar_servidor(server_host, server_port):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.settimeout(10)  # Añadir tiempo de espera
@@ -112,20 +118,28 @@ def check_measure_to_email(data):
     if not isinstance(alerts_list, list):
         logging.info("No alerts found.")
         return
-    
+
     for a in alerts_list:
         _, alert_nombre, alert_rb, alert_mail, alert_temp_max, alert_temp_min, alert_hum_max, alert_hum_min = a
         if data["id"] == alert_rb:
-            
-            temp_exceeds_max = data["temperatura"] > alert_temp_max
-            temp_exceeds_min = data["temperatura"] < alert_temp_min
-            hum_exceeds_max = data["humedad"] > alert_hum_max
-            hum_exceeds_min = data["humedad"] < alert_hum_min
-            
+            temp_exceeds_max = (data["temperatura"] > alert_temp_max) if alert_temp_max != '' else False
+            temp_exceeds_min = (data["temperatura"] < alert_temp_min) if alert_temp_min != '' else False
+            hum_exceeds_max = (data["humedad"] > alert_hum_max) if alert_hum_max != '' else False
+            hum_exceeds_min = (data["humedad"] < alert_hum_min) if alert_hum_min != '' else False
+
             if temp_exceeds_max or temp_exceeds_min or hum_exceeds_max or hum_exceeds_min:
-                mail.send_alert(a)
-                alert.add_alert_issued_db(alert_nombre, alert_rb, alert_mail, alert_temp_max, alert_temp_min, alert_hum_max, alert_hum_min)
-                alert.delete_alert_db(alert_nombre)
+                alert_key = (alert_rb, alert_nombre)
+                if alert_key not in alert_counters:
+                    alert_counters[alert_key] = 0
+                alert_counters[alert_key] += 1
+                
+                if alert_counters[alert_key] >= THRESHOLD_TIMES:
+                    mail.send_alert(a, data)
+                    alert.add_alert_issued_db(alert_nombre, alert_rb, alert_mail, alert_temp_max, alert_temp_min, alert_hum_max, alert_hum_min)
+                    alert.delete_alert_db(alert_nombre)
+                    alert_counters[alert_key] = 0  # Reset counter after sending alert
+            else:
+                alert_counters[(alert_rb, alert_nombre)] = 0  # Reset counter if values are normal
 
 if __name__ == '__main__':
     RB1_HOST = '169.254.249.146'

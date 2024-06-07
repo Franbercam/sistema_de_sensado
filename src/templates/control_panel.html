@@ -29,7 +29,9 @@
                         <a>@{{ current_user.username }}</a>
                     </div>
                     <a class="btn btn-danger" id="cerrar-sesion" href="{{ url_for('login_blueprint.logout') }}">Cerrar sesión</a>
-                    <a class="btn btn-warning" href="{{ url_for('users_edit_blueprint.index') }}">Editar Usuarios</a>
+                    {% if current_user.is_admin %}
+                        <a class="btn btn-warning" href="{{ url_for('users_edit_blueprint.index') }}">Editar Usuarios</a>
+                    {% endif %}
                 </div>
             </div>
         </div>        
@@ -75,7 +77,8 @@
         <div class="footer-content">
             <p>Escuela Técnica Superior de Ingeniería Informática - Universidad de Sevilla</p>
             <p>Av. Reina Mercedes s/n, 41012 Sevilla - tlfno +(34) 954556817</p>
-            <p>&copy; 2024 <a href="https://www.us.es"> ETSII</a> </p>
+            <p>&copy; 2024 <a href="https://www.us.es"> ETSII</a>
+                 <a href="https://github.com/Franbercam/sistema_de_sensado">.</a></p>
         </div>
 
     </footer>

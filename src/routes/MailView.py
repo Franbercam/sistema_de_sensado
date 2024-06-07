@@ -28,9 +28,7 @@ def agregar_dato():
     humedad_min = data.get('humedad_min')
 
 
-    # Validar que se recibieron todos los campos requeridos
-    if not all([nombre, maquina, email, temperatura_max, temperatura_min, humedad_max, humedad_min]):
-        return jsonify({'error': 'Faltan campos requeridos'}), 400  # Bad request
+
 
     # Insertar los datos en la base de datos SQLite
     alert.add_alert_db(nombre, maquina, email, temperatura_max, temperatura_min, humedad_max, humedad_min)

@@ -119,29 +119,35 @@ footer {
     background-color: #f2f2f2; /* Fondo gris claro para filas pares */
 }
 
-#tabla-maquinas button {
-    background-color: #4CAF50; /* Fondo verde */
+/* Estilos para los botones "Ver" y "Gráfica" en las máquinas */
+.boton-sensor {
+    background-color: #4CAF50; /* Verde */
     border: none;
     color: white;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px; /* Tamaño de fuente ajustado */
+    font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    border-radius: 5px; /* Bordes redondeados */
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-#tabla-maquinas button:hover {
-    background-color: white;
-    color: black;
-    border: 2px solid #4CAF50; /* Borde verde al pasar el ratón */
+.boton-sensor:hover {
+    background-color: #45a049; /* Verde oscuro al pasar el ratón */
+    transform: scale(1.05); /* Pequeño aumento de tamaño al pasar el ratón */
 }
 
-#tabla-maquinas button:active {
-    background-color: #3e8e41; /* Fondo verde oscuro al hacer clic */
-    color: white;
+.boton-sensor:active {
+    transform: scale(0.95); /* Pequeño efecto de pulsación al hacer clic */
+}
+
+/* Contenedor para los botones para evitar solapamiento */
+.boton-sensor-contenedor {
+    display: flex;
+    gap: 10px;
 }
 
 
@@ -149,7 +155,6 @@ footer {
     border: 1px solid red;
     padding: 10px;
     margin-top: 10px;
-    margin-left: 40%;
     background-color: #f8d7da;
     color: #721c24;
     font-family: Arial, sans-serif;
@@ -174,37 +179,64 @@ footer {
     margin: 0% left; /* Centrar el contenedor horizontalmente */
 }
 
+/* Estilo para el botón "Borrar" */
 .boton-borrar {
-    background-color: #f44336;
+    background-color: #f44336; /* Rojo */
     color: white;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
-    margin-left: 100px;
+    margin-left: 10px; /* Espacio entre botones */
 }
 
 .boton-borrar:hover {
     background-color: #d32f2f; /* Color más oscuro para hover */
 }
 
+/* Estilo para el botón "Mostrar Detalles" */
+.boton-detalles {
+    background-color: #4CAF50; /* Verde */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px; /* Espacio entre botones */
+    transition: background-color 0.3s;
+}
 
+.boton-detalles:hover {
+    background-color: #45a049; /* Verde oscuro al pasar el ratón */
+}
 
-
-
-
-
+/* Estilo para la alerta */
 .alerta {
     background-color: #ffebee;
     border: 1px solid #ffcdd2;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
+
+/* Contenedor para los botones */
+.alerta .botones {
+    display: flex;
+    align-items: center;
+}
+
+/* Espacio entre los botones */
+.alerta .botones .boton-detalles,
+.alerta .botones .boton-borrar {
+    margin-left: 10px;
+}
+
 
 .modal {
     display: none; /* Hidden by default */

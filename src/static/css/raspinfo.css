@@ -142,6 +142,36 @@ table th {
     transition: background-color 0.3s ease; /* Transición suave para el cambio de color de fondo */
 }
 
+/* Estilo para el botón "Mostrar Detalles" */
+.boton-detalles {
+    background-color: #4CAF50; /* Verde */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px; /* Espacio entre botones */
+    transition: background-color 0.3s;
+}
+
+.boton-detalles:hover {
+    background-color: #45a049; /* Verde oscuro al pasar el ratón */
+}
+
+/* Contenedor para los botones */
+.alerta .botones {
+    display: flex;
+    align-items: center;
+}
+
+/* Espacio entre los botones */
+.alerta .botones .boton-detalles,
+.alerta .botones .boton-borrar {
+    margin-left: 10px;
+}
+
 .alerta {
     background-color: #e8f5e9;
     border: 1px solid #c8e6c9;

@@ -44,7 +44,6 @@ function mostrarAlertasEnPantalla(data) {
         
         const alertaNombre = document.createElement('span');
         
-        // Acceder a los elementos del array para obtener los datos necesarios
         if (alerta.length > 1) {
             const nombre = alerta[1];
             const tem_max = alerta[4];
@@ -52,23 +51,36 @@ function mostrarAlertasEnPantalla(data) {
             const hum_max = alerta[6];
             const hum_min = alerta[7];
             alertaNombre.textContent = nombre;
-            alertaNombre.style.cursor = 'pointer';
-            
-            alertaNombre.onclick = () => {
+
+            // Crear botón para mostrar detalles
+            const botonDetalles = document.createElement('button');
+            botonDetalles.textContent = 'Ver';
+            botonDetalles.classList.add('boton-detalles');
+            botonDetalles.onclick = () => {
                 mostrarDetalles(nombre, tem_max, tem_min, hum_max, hum_min);
             };
+
+            // Crear botón para borrar alerta
+            const botonBorrar = document.createElement('button');
+            botonBorrar.textContent = 'Borrar';
+            botonBorrar.classList.add('boton-borrar');
+            botonBorrar.onclick = () => borrarAlerta(alerta[1]);
+
+            // Crear contenedor para los botones
+            const botonesDiv = document.createElement('div');
+            botonesDiv.classList.add('botones');
+            botonesDiv.appendChild(botonDetalles);
+            botonesDiv.appendChild(botonBorrar);
+
+            // Añadir elementos al contenedor de la alerta
+            alertaDiv.appendChild(alertaNombre);
+            alertaDiv.appendChild(botonesDiv);
         } else {
             console.warn('El objeto alerta no tiene los elementos esperados:', alerta);
             alertaNombre.textContent = 'Nombre desconocido';
+            alertaDiv.appendChild(alertaNombre);
         }
         
-        const botonBorrar = document.createElement('button');
-        botonBorrar.textContent = 'Borrar';
-        botonBorrar.classList.add('boton-borrar');
-        botonBorrar.onclick = () => borrarAlerta(alerta[1]); // Usar el nombre para borrar
-        
-        alertaDiv.appendChild(alertaNombre);
-        alertaDiv.appendChild(botonBorrar);
         listaAlertas.appendChild(alertaDiv);
     });
 }

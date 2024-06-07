@@ -55,20 +55,22 @@ function mostrarMaquinasEnPantalla(data) {
             celdaMaquina.textContent = maquina;
 
             var celdaBotones = filaMaquina.insertCell();
-            var botonVer = document.createElement("button");
+            
+            // Crear botón Ver
+            var botonVer = document.createElement("a");
             botonVer.textContent = "Ver";
+            botonVer.href = `/raspinfo?machine_name=${encodeURIComponent(maquina)}&location=${encodeURIComponent(lugar)}`;
+            botonVer.target = "_blank";
+            botonVer.className = "boton-sensor";
             celdaBotones.appendChild(botonVer);
 
-            var botonGrafica = document.createElement("button");
+            // Crear botón Gráfica
+            var botonGrafica = document.createElement("a");
             botonGrafica.textContent = "Gráfica";
+            botonGrafica.href = `/graph?machine_name=${encodeURIComponent(maquina)}&location=${encodeURIComponent(lugar)}`;
+            botonGrafica.target = "_blank";
+            botonGrafica.className = "boton-sensor";
             celdaBotones.appendChild(botonGrafica);
-
-            botonVer.addEventListener("click", function() {
-                window.location.href = `/raspinfo?machine_name=${encodeURIComponent(maquina)}&location=${encodeURIComponent(lugar)}`;
-            });
-            botonGrafica.addEventListener("click", function() {
-                window.location.href = `/graph?machine_name=${encodeURIComponent(maquina)}&location=${encodeURIComponent(lugar)}`;
-            });
         });
     });
 }
@@ -84,7 +86,7 @@ function mostrarInformacionBD() {
     // Crear el recuadro de mantenimiento
     var recuadroMantenimiento = document.createElement("div");
     recuadroMantenimiento.className = "recuadro-mantenimiento";
-    recuadroMantenimiento.textContent = "La base de datos está en mantenimiento. Por favor, inténtelo más tarde.";
+    recuadroMantenimiento.textContent = "La base de datos se encuentra inaccesible. Por favor, compruebe su estado. ";
     
     // Insertar el recuadro en el lugar de la tabla
     var contenedor = document.getElementById("contenedor-tabla");
@@ -111,8 +113,6 @@ function obtenerDatosSQlite() {
 
 
 
-
-
 function mostrarAlertasEnPantalla(data) {
     const listaAlertas = document.getElementById('lista-alertas');
     listaAlertas.innerHTML = '';
@@ -129,7 +129,6 @@ function mostrarAlertasEnPantalla(data) {
         
         const alertaNombre = document.createElement('span');
         
-        // Acceder a los elementos del array para obtener los datos necesarios
         if (alerta.length > 1) {
             const nombre = alerta[1];
             const tem_max = alerta[4];
@@ -137,23 +136,36 @@ function mostrarAlertasEnPantalla(data) {
             const hum_max = alerta[6];
             const hum_min = alerta[7];
             alertaNombre.textContent = nombre;
-            alertaNombre.style.cursor = 'pointer';
-            
-            alertaNombre.onclick = () => {
+
+            // Crear botón para mostrar detalles
+            const botonDetalles = document.createElement('button');
+            botonDetalles.textContent = 'Ver';
+            botonDetalles.classList.add('boton-detalles');
+            botonDetalles.onclick = () => {
                 mostrarDetalles(nombre, tem_max, tem_min, hum_max, hum_min);
             };
+
+            // Crear botón para borrar alerta
+            const botonBorrar = document.createElement('button');
+            botonBorrar.textContent = 'Borrar';
+            botonBorrar.classList.add('boton-borrar');
+            botonBorrar.onclick = () => borrarAlerta(alerta[1]);
+
+            // Crear contenedor para los botones
+            const botonesDiv = document.createElement('div');
+            botonesDiv.classList.add('botones');
+            botonesDiv.appendChild(botonDetalles);
+            botonesDiv.appendChild(botonBorrar);
+
+            // Añadir elementos al contenedor de la alerta
+            alertaDiv.appendChild(alertaNombre);
+            alertaDiv.appendChild(botonesDiv);
         } else {
             console.warn('El objeto alerta no tiene los elementos esperados:', alerta);
             alertaNombre.textContent = 'Nombre desconocido';
+            alertaDiv.appendChild(alertaNombre);
         }
         
-        const botonBorrar = document.createElement('button');
-        botonBorrar.textContent = 'Borrar';
-        botonBorrar.classList.add('boton-borrar');
-        botonBorrar.onclick = () => borrarAlerta(alerta[1]); // Usar el nombre para borrar
-        
-        alertaDiv.appendChild(alertaNombre);
-        alertaDiv.appendChild(botonBorrar);
         listaAlertas.appendChild(alertaDiv);
     });
 }

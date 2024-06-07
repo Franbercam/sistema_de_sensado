@@ -112,5 +112,5 @@ def records_to_dict(data_list):
     
     return res
 
-print(       (records_to_dict(flux_records).values())[0]   )
+print (''==None)
 
